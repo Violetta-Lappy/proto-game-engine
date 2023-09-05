@@ -2,13 +2,13 @@
 using rlImGui_cs;
 
 namespace PROJECT_Program {
-	public abstract class ABSPROGRAMDearImgui {
+	public abstract class ABSAppProgramDearImgui {
 		public abstract void Start();
 		public abstract void Loop();
 		public abstract void Terminate();
 	}
 
-	public class PROGRAMDearImgui : ABSPROGRAMDearImgui {
+	public class AppProgramDearImgui : ABSAppProgramDearImgui {
 		public override void Start() {
 			rlImGui.Setup(true);
 		}

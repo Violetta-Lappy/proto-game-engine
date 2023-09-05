@@ -5,7 +5,7 @@ using PROJECT_Program;
 
 class Program {
 	public static void Main() {
-		PROGRAMProgramMain h_program = new PROGRAMProgramMain();
+		AppProgramMain h_program = new AppProgramMain();
 		h_program.Start();
 		while (Raylib.WindowShouldClose() == false) {
 			h_program.Loop();
