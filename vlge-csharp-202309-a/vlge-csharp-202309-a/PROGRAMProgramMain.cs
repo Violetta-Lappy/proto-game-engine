@@ -18,8 +18,8 @@
 		public override void Start() {
 			Get_ProgramSetting()
 				.Set_ProgramName("PROGRAM - RAYLIB SUCCESSFUL")
-				.Set_ScreenWidth(640)
-				.Set_ScreenHeight(480);
+				.Set_ScreenWidth(800)
+				.Set_ScreenHeight(600);
 
 			//Get_Raylib().Start(new ProgramSetting());
 			Get_Raylib().Start(Get_ProgramSetting());
