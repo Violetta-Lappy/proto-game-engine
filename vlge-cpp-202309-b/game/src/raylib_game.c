@@ -1,19 +1,6 @@
-/*******************************************************************************************
-*
-*   raylib game template
-*
-*   <Game title>
-*   <Game description>
-*
-*   This game has been created using raylib (www.raylib.com)
-*   raylib is licensed under an unmodified zlib/libpng license (View raylib.h for details)
-*
-*   Copyright (c) 2021 Ramon Santamaria (@raysan5)
-*
-********************************************************************************************/
-
+// NOTE: Declares global (extern) variables and screens functions
 #include "raylib.h"
-#include "screens.h"    // NOTE: Declares global (extern) variables and screens functions
+#include "screens.h"    
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
@@ -23,7 +10,7 @@
 // Shared Variables Definition (global)
 // NOTE: Those variables are shared between modules through screens.h
 //----------------------------------------------------------------------------------
-GameScreen currentScreen = LOGO;
+KGameScreen currentScreen = K_LogoSplashScreen;
 Font font = { 0 };
 Music music = { 0 };
 Sound fxCoin = { 0 };
@@ -39,7 +26,7 @@ static float transAlpha = 0.0f;
 static bool onTransition = false;
 static bool transFadeOut = false;
 static int transFromScreen = -1;
-static GameScreen transToScreen = UNKNOWN;
+static KGameScreen transToScreen = K_Unknown;
 
 //----------------------------------------------------------------------------------
 // Local Functions Declaration
@@ -56,11 +43,10 @@ static void UpdateDrawFrame(void);          // Update and draw one frame
 // Main entry point
 //----------------------------------------------------------------------------------
 int main(void) {
-	// Initialization
-	//---------------------------------------------------------
-	InitWindow(screenWidth, screenHeight, "raylib game template");
+	InitWindow(screenWidth, screenHeight, "RAYLIB - TEMPLATE - USING DEFAULT SETTING");
 
-	InitAudioDevice();      // Initialize audio device
+	// Initialize audio device
+	InitAudioDevice();
 
 	// Load global data (assets that must be available in all screens, i.e. font)
 	font = LoadFont("resources/mecha.png");
@@ -71,18 +57,18 @@ int main(void) {
 	PlayMusicStream(music);
 
 	// Setup and init first screen
-	currentScreen = LOGO;
+	currentScreen = K_LogoSplashScreen;
 	InitLogoScreen();
 
 #if defined(PLATFORM_WEB)
 	emscripten_set_main_loop(UpdateDrawFrame, 60, 1);
 #else
-	SetTargetFPS(60);       // Set our game to run at 60 frames-per-second
-	//--------------------------------------------------------------------------------------
+	// Set our game to run at 60 frames-per-second
+	SetTargetFPS(60);
 
 	// Main game loop
-	while (!WindowShouldClose())    // Detect window close button or ESC key
-	{
+	// Detect window close button or ESC key
+	while (!WindowShouldClose()) {
 		UpdateDrawFrame();
 	}
 #endif
@@ -91,10 +77,26 @@ int main(void) {
 	//--------------------------------------------------------------------------------------
 	// Unload current screen data before closing
 	switch (currentScreen) {
-		case LOGO: UnloadLogoScreen(); break;
-		case TITLE: UnloadTitleScreen(); break;
-		case GAMEPLAY: UnloadGameplayScreen(); break;
-		case ENDING: UnloadEndingScreen(); break;
+		case K_LogoSplashScreen:
+			{
+				UnloadLogoScreen();
+			}
+			break;
+		case K_TitleScreen:
+			{
+				UnloadTitleScreen();
+			}
+			break;
+		case K_Gameplay:
+			{
+				UnloadGameplayScreen();
+			}
+			break;
+		case K_End:
+			{
+				UnloadEndingScreen();
+			}
+			break;
 		default: break;
 	}
 
@@ -111,33 +113,33 @@ int main(void) {
 	return 0;
 }
 
-static void ChangeToScreen(GameScreen screen) {
+static void ChangeToScreen(KGameScreen screen) {
 	// Unload current screen
 	switch (currentScreen) {
-		case LOGO: UnloadLogoScreen(); break;
-		case TITLE: UnloadTitleScreen(); break;
-		case GAMEPLAY: UnloadGameplayScreen(); break;
-		case ENDING: UnloadEndingScreen(); break;
+		case K_LogoSplashScreen: UnloadLogoScreen(); break;
+		case K_TitleScreen: UnloadTitleScreen(); break;
+		case K_Gameplay: UnloadGameplayScreen(); break;
+		case K_End: UnloadEndingScreen(); break;
 		default: break;
 	}
 
 	// Init next screen
 	switch (screen) {
-		case LOGO: InitLogoScreen(); break;
-		case TITLE: InitTitleScreen(); break;
-		case GAMEPLAY: InitGameplayScreen(); break;
-		case ENDING: InitEndingScreen(); break;
+		case K_LogoSplashScreen: InitLogoScreen(); break;
+		case K_TitleScreen: InitTitleScreen(); break;
+		case K_Gameplay: InitGameplayScreen(); break;
+		case K_End: InitEndingScreen(); break;
 		default: break;
 	}
 
 	currentScreen = screen;
 }
 
-static void TransitionToScreen(GameScreen screen) {
+static void TransitionToScreen(KGameScreen arg_gameScreenType) {
 	onTransition = true;
 	transFadeOut = false;
 	transFromScreen = currentScreen;
-	transToScreen = screen;
+	transToScreen = arg_gameScreenType;
 	transAlpha = 0.0f;
 }
 
@@ -152,20 +154,20 @@ static void UpdateTransition(void) {
 
 			// Unload current screen
 			switch (transFromScreen) {
-				case LOGO: UnloadLogoScreen(); break;
-				case TITLE: UnloadTitleScreen(); break;
-				case OPTIONS: UnloadOptionsScreen(); break;
-				case GAMEPLAY: UnloadGameplayScreen(); break;
-				case ENDING: UnloadEndingScreen(); break;
+				case K_LogoSplashScreen: UnloadLogoScreen(); break;
+				case K_TitleScreen: UnloadTitleScreen(); break;
+				case K_Option: UnloadOptionsScreen(); break;
+				case K_Gameplay: UnloadGameplayScreen(); break;
+				case K_End: UnloadEndingScreen(); break;
 				default: break;
 			}
 
 			// Load next screen
 			switch (transToScreen) {
-				case LOGO: InitLogoScreen(); break;
-				case TITLE: InitTitleScreen(); break;
-				case GAMEPLAY: InitGameplayScreen(); break;
-				case ENDING: InitEndingScreen(); break;
+				case K_LogoSplashScreen: InitLogoScreen(); break;
+				case K_TitleScreen: InitTitleScreen(); break;
+				case K_Gameplay: InitGameplayScreen(); break;
+				case K_End: InitEndingScreen(); break;
 				default: break;
 			}
 
@@ -184,7 +186,7 @@ static void UpdateTransition(void) {
 			transFadeOut = false;
 			onTransition = false;
 			transFromScreen = -1;
-			transToScreen = UNKNOWN;
+			transToScreen = K_Unknown;
 		}
 	}
 }
@@ -201,47 +203,52 @@ static void UpdateDrawFrame(void) {
 
 	if (!onTransition) {
 		switch (currentScreen) {
-			case LOGO:
+			case K_LogoSplashScreen:
 				{
 					UpdateLogoScreen();
-
 					if (FinishLogoScreen()) {
-						TransitionToScreen(TITLE);
+						TransitionToScreen(K_TitleScreen);
 					}
-
 				}
 				break;
-			case TITLE:
+			case K_TitleScreen:
 				{
 					UpdateTitleScreen();
-
-					if (FinishTitleScreen() == 1) TransitionToScreen(OPTIONS);
-					else if (FinishTitleScreen() == 2) TransitionToScreen(GAMEPLAY);
-
-				} break;
-			case OPTIONS:
+					if (FinishTitleScreen() == 1) {
+						TransitionToScreen(K_Option);
+					}
+					else if (FinishTitleScreen() == 2) {
+						TransitionToScreen(K_Gameplay);
+					}
+				}
+				break;
+			case K_Option:
 				{
 					UpdateOptionsScreen();
-
-					if (FinishOptionsScreen()) TransitionToScreen(TITLE);
-
-				} break;
-			case GAMEPLAY:
+					if (FinishOptionsScreen()) {
+						TransitionToScreen(K_TitleScreen);
+					}
+				}
+				break;
+			case K_Gameplay:
 				{
 					UpdateGameplayScreen();
-
-					if (FinishGameplayScreen() == 1) TransitionToScreen(ENDING);
+					if (FinishGameplayScreen() == 1) {
+						TransitionToScreen(K_End);
+					}
 					//else if (FinishGameplayScreen() == 2) TransitionToScreen(TITLE);
-
-				} break;
-			case ENDING:
+				}
+				break;
+			case K_End:
 				{
 					UpdateEndingScreen();
-
-					if (FinishEndingScreen() == 1) TransitionToScreen(TITLE);
-
-				} break;
-			default: break;
+					if (FinishEndingScreen() == 1) {
+						TransitionToScreen(K_TitleScreen);
+					}
+				}
+				break;
+			default:
+				break;
 		}
 	}
 	else {
@@ -255,16 +262,39 @@ static void UpdateDrawFrame(void) {
 	ClearBackground(RAYWHITE);
 
 	switch (currentScreen) {
-		case LOGO: DrawLogoScreen(); break;
-		case TITLE: DrawTitleScreen(); break;
-		case OPTIONS: DrawOptionsScreen(); break;
-		case GAMEPLAY: DrawGameplayScreen(); break;
-		case ENDING: DrawEndingScreen(); break;
-		default: break;
+		case K_LogoSplashScreen:
+			{
+				DrawLogoScreen();
+			}
+			break;
+		case K_TitleScreen:
+			{
+				DrawTitleScreen();
+			}
+			break;
+		case K_Option:
+			{
+				DrawOptionsScreen();
+			}
+			break;
+		case K_Gameplay:
+			{
+				DrawGameplayScreen();
+			}
+			break;
+		case K_End:
+			{
+				DrawEndingScreen();
+			}
+			break;
+		default:
+			break;
 	}
 
 	// Draw full screen rectangle in front of everything
-	if (onTransition) DrawTransition();
+	if (onTransition) {
+		DrawTransition();
+	}
 
 	DrawFPS(10, 10);
 
