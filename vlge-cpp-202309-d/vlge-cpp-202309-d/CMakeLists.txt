@@ -23,9 +23,9 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   endif()
 endif()
 
-# Our Project
+#--Define Your Custom Project Here--
 
-add_executable(${PROJECT_NAME} core_basic_window.cpp)
+add_executable(${PROJECT_NAME} main.cpp)
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 
