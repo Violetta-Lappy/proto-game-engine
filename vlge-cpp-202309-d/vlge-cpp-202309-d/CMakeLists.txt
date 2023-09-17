@@ -25,7 +25,7 @@ endif()
 
 #--Define Your Custom Project Here--
 
-add_executable(${PROJECT_NAME} main.cpp "GameEngine/GEVector3.h" "GameProgram/GPManager.cpp" "GameProgram/GPManager.h" "AppProgram/APManager.h" "AppProgram/APManager.cpp" "GameEngine/GENetwork.h" "GameEngine/GETransform.h" "GameProgram/GameProgram.cpp" "AppProgram/AppProgram.cpp" "GameEngine/GELogger.h" "AppEngine/AELogger.h" "LauncherProgram/LPManager.h"   "Constant/KExitCode.h" "Constant/KFpsTarget.h" "ArgumentException/ArgumentException.h" "AppProgram/AppProgram.h")
+add_executable(${PROJECT_NAME} main.cpp "GameEngine/GEVector3.h" "GameProgram/GPManager.cpp" "GameProgram/GPManager.h" "AppProgram/APManager.h" "AppProgram/APManager.cpp" "GameEngine/GENetwork.h" "GameEngine/GETransform.h" "GameProgram/GameProgram.cpp" "AppProgram/AppProgram.cpp" "GameEngine/GELogger.h" "AppEngine/AELogger.h" "LauncherProgram/LPManager.h"   "Constant/KExitCode.h" "Constant/KFpsTarget.h" "ArgumentException/ArgumentException.h" "AppProgram/AppProgram.h" "AppEngine/AEInput.h")
 
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
