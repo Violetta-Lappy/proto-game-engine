@@ -1,6 +1,7 @@
 #include <iostream>
 #include "raylib.h"
 #include "Constant/KExitCode.h"
+#include "Constant/KFpsTarget.h"
 
 #include "AppProgram/AppProgram.h"
 
@@ -11,13 +12,6 @@
 const int K_ScreenWidth = 800;
 const int K_ScreenHeight = 600;
 
-class KFpsTarget {
-public:
-	static const int K_144 = 144;
-	static const int K_60 = 60;
-	static const int K_30 = 30;
-};
-
 int main(int argc, int* argv[]) {
 		
 	InitWindow(K_ScreenWidth, K_ScreenHeight, "raylib [core] example - basic window");
@@ -27,7 +21,7 @@ int main(int argc, int* argv[]) {
 #else
 
 	// Set our game to run at 60 frames-per-second	
-	SetTargetFPS(KFpsTarget::K_60);
+	SetTargetFPS(KFpsTarget::K_60());
 
 	// Main game loop
 	while (!WindowShouldClose())    // Detect window close button or ESC key
