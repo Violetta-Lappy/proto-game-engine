@@ -1,0 +1,3 @@
+D:/GitStorage/proto-game-engine/vlge-cpp-202309-c/build/CMakeFiles/ALL_BUILD.dir
+D:/GitStorage/proto-game-engine/vlge-cpp-202309-c/build/CMakeFiles/ZERO_CHECK.dir
+D:/GitStorage/proto-game-engine/vlge-cpp-202309-c/build/vlge-cpp-202309-c/CMakeFiles/vlge-cpp-202309-c.dir

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\GitStorage\proto-game-engine\vlge-cpp-202309-c\build\CMakeFiles\6ff6c840ccf7a49eab66d3c4108a8ff6\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{38E1A30E-5E91-3AFC-8CF9-0B1674FC9476}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
