@@ -25,7 +25,7 @@ endif()
 
 #--Define Your Custom Project Here--
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp "GameEngine/GEVector3.h" "GameProgram/GPManager.cpp" "GameProgram/GPManager.h" "AppProgram/APManager.h" "AppProgram/APManager.cpp" "GameEngine/GENetwork.h" "GameEngine/GETransform.h" "GameProgram/GameProgram.cpp" "AppProgram/AppProgram.cpp" "GameEngine/GELogger.h")
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 

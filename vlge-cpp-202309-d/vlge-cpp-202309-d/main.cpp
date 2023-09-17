@@ -9,7 +9,7 @@ const int K_ScreenWidth = 800;
 const int K_ScreenHeight = 600;
 
 int main(int argc, int* argv[])
-{
+{	
 	InitWindow(K_ScreenWidth, K_ScreenHeight, "raylib [core] example - basic window");
 
 #if defined(PLATFORM_WEB)
