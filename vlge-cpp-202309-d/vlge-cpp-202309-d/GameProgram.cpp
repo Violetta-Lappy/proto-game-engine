@@ -11,8 +11,8 @@ const int K_ScreenWidth = 800;
 const int K_ScreenHeight = 600;
 
 int main(int argc, int* argv[]) {
-		
-	InitWindow(K_ScreenWidth, K_ScreenHeight, "raylib [core] example - basic window");
+
+	InitWindow(K_ScreenWidth, K_ScreenHeight, "GameProgram");
 
 #if defined(PLATFORM_WEB)
 	emscripten_set_main_loop(UpdateDrawFrame, 0, 1);
@@ -35,7 +35,7 @@ int main(int argc, int* argv[]) {
 #endif
 
 	// Close window and OpenGL context
-	CloseWindow();	
+	CloseWindow();
 
 	// return success
 	return KExitCode::K_Success();
