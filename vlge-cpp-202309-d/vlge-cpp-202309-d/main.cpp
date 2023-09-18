@@ -24,7 +24,7 @@ int main(int argc, char* argv[]) {
 	int screenHeight = 800;
 
 	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
-	InitWindow(screenWidth, screenHeight, "raylib-Extras [ImGui] example - simple ImGui Demo");
+	InitWindow(screenWidth, screenHeight, "vlge-cpp-202309-d");
 	SetTargetFPS(60);
 	rlImGuiSetup(true);
 

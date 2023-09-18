@@ -27,7 +27,8 @@ endif()
 
 #--Define Your Custom Project Here--
 
-file(GLOB_RECURSE SOURCEFILE CONFIGURE_DEPENDS
+file(GLOB_RECURSE SOURCEFILE_ALL CONFIGURE_DEPENDS
+"${CMAKE_CURRENT_SOURCE_DIR}/LauncherEngine/*.cpp"    
 "${CMAKE_CURRENT_SOURCE_DIR}/LauncherProgram/*.cpp"    
 "${CMAKE_CURRENT_SOURCE_DIR}/AppEngine/*.cpp"    
 "${CMAKE_CURRENT_SOURCE_DIR}/AppProgram/*.cpp"    
@@ -35,11 +36,11 @@ file(GLOB_RECURSE SOURCEFILE CONFIGURE_DEPENDS
 "${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.cpp"    
 "${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.cpp"    
 "${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.cpp"    
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.cpp"
-)
 
-file(GLOB_RECURSE HEADERFILE CONFIGURE_DEPENDS
+"${CMAKE_CURRENT_SOURCE_DIR}/LauncherEngine/*.h"    
 "${CMAKE_CURRENT_SOURCE_DIR}/LauncherProgram/*.h"    
 "${CMAKE_CURRENT_SOURCE_DIR}/AppEngine/*.h"    
 "${CMAKE_CURRENT_SOURCE_DIR}/AppProgram/*.h"    
@@ -47,14 +48,69 @@ file(GLOB_RECURSE HEADERFILE CONFIGURE_DEPENDS
 "${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.h"    
 "${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.h"    
 "${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.h"    
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.h"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.h"
 )
 
-add_executable(${PROJECT_NAME} main.cpp ${SOURCEFILE} ${HEADERFILE})
-add_executable(launcher launcher.cpp ${SOURCEFILE} ${HEADERFILE})
-add_executable(app app.cpp ${SOURCEFILE} ${HEADERFILE})
-add_executable(game game.cpp ${SOURCEFILE} ${HEADERFILE})
+file(GLOB_RECURSE SOURCEFILE_LAUNCHER CONFIGURE_DEPENDS
+"${CMAKE_CURRENT_SOURCE_DIR}/LauncherEngine/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/LauncherProgram/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/LauncherEngine/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/LauncherProgram/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.h"
+)
+
+file(GLOB_RECURSE SOURCEFILE_APP CONFIGURE_DEPENDS
+"${CMAKE_CURRENT_SOURCE_DIR}/AppEngine/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/AppProgram/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/AppEngine/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/AppProgram/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.h"
+)
+
+file(GLOB_RECURSE SOURCEFILE_GAME CONFIGURE_DEPENDS
+"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.h"
+)
+
+add_executable(${PROJECT_NAME} main.cpp ${SOURCEFILE_ALL})
+add_executable(launcher launcher.cpp ${SOURCEFILE_LAUNCHER})
+add_executable(app app.cpp ${SOURCEFILE_APP})
+add_executable(game game.cpp ${SOURCEFILE_GAME})
 
 set(3RDPARTY "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui" "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui")
 target_include_directories(${PROJECT_NAME} PUBLIC ${3RDPARTY})

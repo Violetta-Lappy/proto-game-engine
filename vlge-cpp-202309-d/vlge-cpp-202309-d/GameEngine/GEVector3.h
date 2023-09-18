@@ -27,4 +27,5 @@ struct GEVector3
 	
 	// TODO: Absolute Number
 	static GEVector3 Abs() { return GEVector3(1, 1, 1); }
+	static GEVector3 Negative() { return GEVector3(1, 1, 1); }
 };

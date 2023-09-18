@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-class ABSLogger {
+class ABSLoggerConsole {
 public:
 	virtual std::string Info() = 0;
 	virtual std::string Caution() = 0;

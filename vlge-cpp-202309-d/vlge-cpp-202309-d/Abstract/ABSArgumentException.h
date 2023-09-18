@@ -1,6 +1,6 @@
 #pragma once
 
-class ArgumentException {
+class ABSArgumentException {
 public:
 	int ArgumentNullException() {
 		//Log here
