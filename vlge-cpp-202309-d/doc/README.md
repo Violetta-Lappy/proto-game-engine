@@ -1,11 +1,25 @@
 # 3rd Party Library Use
-- Dear Imgui
-- RmlUI
-- Open Shading Language (OSL) opose to GLSL / HLSL, work closely with Blender
+
+## Gui
+- Dear Imgui (Immediate UI)
+- RmlUI (Retained UI, HTML + CSS)
+
+## Entity Component System
+- flecs (ESC)
+
+## Shader
+- GLSL / HLSL (NOT PLANNED)
+- Open Shading Language (OSL), work closely with Blender, the same result between 2 applications
+
+## Physic Engine
+- Bullet
+
+## Network
+- enet (Network)
+
+## MemoryCard Save Data
 - tinyXML
 - JSON
-- enet (Network)
-- flecs (ESC)
 
 # Reference Development
 - https://ezengine.net/pages/docs/ui/ui.html
