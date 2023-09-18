@@ -2,9 +2,7 @@
 
 class ABSAppProgram {
 public:
-	ABSAppProgram();
-	~ABSAppProgram();
-	void Start();
-	void Loop();
-	void Terminate();	
+	virtual void Start();
+	virtual void Loop();
+	virtual void Terminate();	
 };
