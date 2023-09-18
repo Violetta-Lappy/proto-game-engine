@@ -1,3 +1,12 @@
+# 3rd Party Library Use
+- Dear Imgui
+- RmlUI
+- Open Shading Language (OSL) opose to GLSL / HLSL, work closely with Blender
+- tinyXML
+- JSON
+- enet (Network)
+- flecs (ESC)
+
 # Reference Development
 - https://ezengine.net/pages/docs/ui/ui.html
 - https://docs.godotengine.org/en/stable/
