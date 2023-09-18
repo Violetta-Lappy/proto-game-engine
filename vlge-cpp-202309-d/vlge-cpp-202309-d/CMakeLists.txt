@@ -27,19 +27,46 @@ endif()
 
 #--Define Your Custom Project Here--
 
-add_executable(${PROJECT_NAME} main.cpp "GameEngine/GEVector3.h" "GameProgram/GPManager.cpp" "GameProgram/GPManager.h" "AppProgram/APManager.h" "AppProgram/APManager.cpp" "GameEngine/GENetwork.h" "GameEngine/GETransform.h" "GameEngine/GELogger.h" "AppEngine/AELogger.h" "LauncherProgram/LPManager.h"   "Constant/KExitCode.h" "Constant/KFpsTarget.h" "ArgumentException/ArgumentException.h"  "AppEngine/AEInput.h" "GameProgram/GPGuiManager.h" "GameProgram/GPAudioManager.h")
-add_executable(launcher "launcher.cpp")
-add_executable(app "app.cpp")
-add_executable(game "game.cpp")
+file(GLOB_RECURSE SOURCEFILE CONFIGURE_DEPENDS
+"${CMAKE_CURRENT_SOURCE_DIR}/LauncherProgram/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/AppEngine/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/AppProgram/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.cpp"
+)
+
+file(GLOB_RECURSE HEADERFILE CONFIGURE_DEPENDS
+"${CMAKE_CURRENT_SOURCE_DIR}/LauncherProgram/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/AppEngine/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/AppProgram/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Abstract/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.h"
+)
+
+add_executable(${PROJECT_NAME} main.cpp ${SOURCEFILE} ${HEADERFILE})
+add_executable(launcher launcher.cpp ${SOURCEFILE} ${HEADERFILE})
+add_executable(app app.cpp ${SOURCEFILE} ${HEADERFILE})
+add_executable(game game.cpp ${SOURCEFILE} ${HEADERFILE})
+
+set(3RDPARTY "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui" "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui")
+target_include_directories(${PROJECT_NAME} PUBLIC ${3RDPARTY})
+target_include_directories(launcher PUBLIC ${3RDPARTY})
+target_include_directories(app PUBLIC ${3RDPARTY})
+target_include_directories(game PUBLIC ${3RDPARTY})
 
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 target_link_libraries(launcher raylib)
 target_link_libraries(app raylib)
 target_link_libraries(game raylib)
-
-target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui")
-target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui")
 
 # Web Configurations
 if (${PLATFORM} STREQUAL "Web")

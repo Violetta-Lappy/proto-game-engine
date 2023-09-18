@@ -41,7 +41,7 @@
 #include <map>
 
 #ifndef NO_FONT_AWESOME
-#include "extras/FA6FreeSolidFontData.h"
+#include "FA6FreeSolidFontData.h"
 #endif
 
 static Texture2D FontTexture;
