@@ -1,16 +1,18 @@
 #pragma once
 
-#include "../GameProgram-Abstract/ABSGameProgram.h"
+#include <raylib.h>
+#include <imgui.h>
+#include <rlImGui.h>
 
 /// <summary>
 /// Example of game.cpp should look like
 /// </summary>
-class GameProgramExample : public ABSGameProgram {
+class GameProgramExample {
 public:
-	void Start() override;
-	void Update() override;
-	void Terminate() override;
-	void Gui_Start() override;
-	void Gui_Update() override;
-	void Gui_Terminate() override;
+	void Start();
+	void Update();
+	void Terminate();
+	void Gui_Start();
+	void Gui_Update();
+	void Gui_Terminate();
 };

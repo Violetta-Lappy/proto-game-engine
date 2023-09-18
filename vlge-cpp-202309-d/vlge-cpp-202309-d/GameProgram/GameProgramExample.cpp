@@ -1,6 +1,6 @@
 #include "GameProgramExample.h"
 
-void GameProgramExample::Start() override {
+void GameProgramExample::Start() {
 	int screenWidth = 1280;
 	int screenHeight = 800;
 	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
@@ -10,7 +10,7 @@ void GameProgramExample::Start() override {
 	Gui_Start();
 }
 
-void GameProgramExample::Update() override {
+void GameProgramExample::Update() {
 	BeginDrawing();
 	ClearBackground(DARKGRAY);
 
@@ -20,16 +20,16 @@ void GameProgramExample::Update() override {
 	EndDrawing();
 }
 
-void GameProgramExample::Terminate() override {
+void GameProgramExample::Terminate() {
 	Gui_Terminate();
 	CloseWindow();
 }
 
-void GameProgramExample::Gui_Start() override {
+void GameProgramExample::Gui_Start() {
 	rlImGuiSetup(true);
 }
 
-void GameProgramExample::Gui_Update() override {
+void GameProgramExample::Gui_Update() {
 	// start ImGui Conent
 	rlImGuiBegin();
 	// show ImGui Content
@@ -39,6 +39,6 @@ void GameProgramExample::Gui_Update() override {
 	rlImGuiEnd();
 }
 
-void GameProgramExample::Gui_Terminate() override {
+void GameProgramExample::Gui_Terminate() {
 	rlImGuiShutdown();
 }
