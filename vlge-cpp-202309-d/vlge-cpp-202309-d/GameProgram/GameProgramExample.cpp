@@ -1,10 +1,21 @@
 #include "GameProgramExample.h"
 
+GameProgramConfig GameProgramExample::Get_GameProgramConfig() {
+	m_gameProgramConfig.Set_ProgramName("Violetta Lappy - Game Example");
+	m_gameProgramConfig.Set_ScreenWidth(1280);
+	m_gameProgramConfig.Set_ScreenHeight(720);
+	m_gameProgramConfig.Set_TargetFps(KFpsTarget::K_60);
+	m_gameProgramConfig.Set_RefreshRate(KRefeshRate::K_30);
+	return m_gameProgramConfig;
+}
+
 void GameProgramExample::Start() {
-	int screenWidth = 1280;
-	int screenHeight = 800;
 	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
-	InitWindow(screenWidth, screenHeight, "GameProgram");
+
+	InitWindow(Get_GameProgramConfig().Get_ScreenWidth()
+		, Get_GameProgramConfig().Get_ScreenHeight()
+		, Get_GameProgramConfig().Get_ProgramName().c_str());
+
 	SetTargetFPS(60);
 
 	Gui_Start();

@@ -19,7 +19,7 @@ int main(int argc, int* argv[]) {
 #else
 
 	// Set our game to run at 60 frames-per-second	
-	SetTargetFPS(KFpsTarget::K_60());
+	SetTargetFPS(KFpsTarget::K_60);
 
 	// Main game loop
 	while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -38,5 +38,5 @@ int main(int argc, int* argv[]) {
 	CloseWindow();
 
 	// return success
-	return KExitCode::K_Success();
+	return KExitCode::K_Success;
 }

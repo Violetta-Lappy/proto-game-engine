@@ -1,9 +1,3 @@
-#include "raylib.h"
-#include "raymath.h"
-
-#include "imgui.h"
-#include "rlImGui.h"
-
 #include "GameProgram/GameProgramExample.h"
 
 int main(int argc, char* argv[]) {
