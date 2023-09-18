@@ -23,6 +23,8 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   endif()
 endif()
 
+# add_subdirectory(3rdparty/imgui)
+
 #--Define Your Custom Project Here--
 
 add_executable(${PROJECT_NAME} main.cpp "GameEngine/GEVector3.h" "GameProgram/GPManager.cpp" "GameProgram/GPManager.h" "AppProgram/APManager.h" "AppProgram/APManager.cpp" "GameEngine/GENetwork.h" "GameEngine/GETransform.h" "GameEngine/GELogger.h" "AppEngine/AELogger.h" "LauncherProgram/LPManager.h"   "Constant/KExitCode.h" "Constant/KFpsTarget.h" "ArgumentException/ArgumentException.h"  "AppEngine/AEInput.h" "GameProgram/GPGuiManager.h" "GameProgram/GPAudioManager.h")
@@ -35,6 +37,9 @@ target_link_libraries(${PROJECT_NAME} raylib)
 target_link_libraries(launcher raylib)
 target_link_libraries(app raylib)
 target_link_libraries(game raylib)
+
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui")
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui")
 
 # Web Configurations
 if (${PLATFORM} STREQUAL "Web")
