@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 	int screenWidth = 1280;
 	int screenHeight = 800;
 
-	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);	
+	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	InitWindow(screenWidth, screenHeight, fmt::format("{0}, {1}, {2}", "helloworld", "fmt", "hoanglongplanner").c_str());
 	SetTargetFPS(60);

@@ -36,6 +36,7 @@
 - Animation
 - Network
 - Physic
+- Spotlight
 
 # Constant Folder (Depends on Engine Type)
 - KExitCode
