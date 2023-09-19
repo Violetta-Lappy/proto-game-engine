@@ -2,7 +2,7 @@
 
 #include "raylib.h"
 
-// TODO: Implement Functionality
+// TODO: Implement Random Functionality
 
 class GERandom {
 public:

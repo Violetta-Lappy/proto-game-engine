@@ -13,38 +13,38 @@ struct GEVector3 {
 		z = arg_z;
 	}
 
-	static GEVector3 Zero() {
+	static const GEVector3 Zero() {
 		return GEVector3(0, 0, 0);
 	}
-	static GEVector3 One() {
+	static const GEVector3 One() {
 		return GEVector3(1, 1, 1);
 	}
 
 	// TODO: Proper Function
-	static GEVector3 Up() {
+	static const GEVector3 Up() {
 		return GEVector3(1, 1, 1);
 	}
-	static GEVector3 Down() {
+	static const GEVector3 Down() {
 		return GEVector3(1, 1, 1);
 	}
-	static GEVector3 Back() {
+	static const GEVector3 Back() {
 		return GEVector3(1, 1, 1);
 	}
-	static GEVector3 Forward() {
+	static const GEVector3 Forward() {
 		return GEVector3(1, 1, 1);
 	}
-	static GEVector3 Left() {
+	static const GEVector3 Left() {
 		return GEVector3(1, 1, 1);
 	}
-	static GEVector3 Right() {
+	static const GEVector3 Right() {
 		return GEVector3(1, 1, 1);
 	}
 
 	// TODO: Absolute Number
-	static GEVector3 Abs() {
+	static const GEVector3 Abs() {
 		return GEVector3(1, 1, 1);
 	}
-	static GEVector3 Negative() {
+	static const GEVector3 Negative() {
 		return GEVector3(1, 1, 1);
 	}
 };

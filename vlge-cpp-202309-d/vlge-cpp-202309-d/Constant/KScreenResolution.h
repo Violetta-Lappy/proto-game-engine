@@ -9,20 +9,29 @@ public:
 		i32_width = arg_width;
 		i32_height = arg_height;
 	}	
-	int Get_Width() {
+	const int Get_Width() {
 		return i32_width;
 	}
-	int Get_Height() {
+	const int Get_Height() {
 		return i32_height;
 	}
+//--Portrait--
 public:
-	static KScreenResolution K_600x800_43_Portrait() {
+	static const KScreenResolution K_600x800() {
 		return KScreenResolution(600, 800);
 	}
-	static KScreenResolution K_800x600_43_Landscape() {
+	static const KScreenResolution K_720x1280() {
+		return KScreenResolution(720, 1280);
+	}
+//--Landscape--
+public:
+	static const KScreenResolution K_800x600() {
 		return KScreenResolution(800, 600);
 	}
-	static KScreenResolution K_1920x1080_169_Landscape() {
+	static const KScreenResolution K_1280x720() {
+		return KScreenResolution(1280, 720);
+	}
+	static const KScreenResolution K_1920x1080() {
 		return KScreenResolution(1920, 1080);
 	}
 };

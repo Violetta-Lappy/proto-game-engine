@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.11) # FetchContent is available in 3.11+
+# FetchContent is available in 3.11+
+cmake_minimum_required(VERSION 3.11) 
+
 project(vlge-cpp-202309-d)
 
 # Generate compile_commands.json
@@ -99,22 +101,44 @@ file(GLOB_RECURSE SOURCEFILE_GAME CONFIGURE_DEPENDS
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.h"
 )
 
+file(GLOB_RECURSE SOURCEFILE_HELPFUL CONFIGURE_DEPENDS
+"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.cpp"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/Constant/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/ArgumentException/*.h"    
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.h"
+)
+
 add_executable(${PROJECT_NAME} main.cpp ${SOURCEFILE_ALL})
 add_executable(launcher launcher.cpp ${SOURCEFILE_LAUNCHER})
 add_executable(app app.cpp ${SOURCEFILE_APP})
 add_executable(game game.cpp ${SOURCEFILE_GAME})
+#add_executable(helpful helpful.cpp ${SOURCEFILE_HELPFUL})
 
-set(3RDPARTY "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui" "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui")
+set(3RDPARTY 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui")
+
 target_include_directories(${PROJECT_NAME} PUBLIC ${3RDPARTY})
 target_include_directories(launcher PUBLIC ${3RDPARTY})
 target_include_directories(app PUBLIC ${3RDPARTY})
 target_include_directories(game PUBLIC ${3RDPARTY})
+#target_include_directories(helpful PUBLIC ${3RDPARTY})
 
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib)
 target_link_libraries(launcher raylib)
 target_link_libraries(app raylib)
 target_link_libraries(game raylib)
+#target_link_libraries(helpful raylib)
 
 # Web Configurations
 if (${PLATFORM} STREQUAL "Web")

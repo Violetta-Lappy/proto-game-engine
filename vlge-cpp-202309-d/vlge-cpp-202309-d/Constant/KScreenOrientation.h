@@ -2,7 +2,7 @@
 
 #include <string>
 
-// TODO: Add functionality
+// TODO: Add screen orientation functionality Guid
 
 enum KScreenOrientation {
 	K_Portrait,
