@@ -48,46 +48,6 @@ if (NOT fmt_FOUND)
   endif()
 endif()
 
-#--freetype package--
-set(FREETYPE_VERSION 2.13.2)
-find_package(freetype ${FREETYPE_VERSION} QUIET) # QUIET or REQUIRED
-# If there's none, fetch and build
-if (NOT freetype_FOUND) 
-  include(FetchContent)
-  FetchContent_Declare(
-    freetype
-    DOWNLOAD_EXTRACT_TIMESTAMP OFF
-    URL https://download.savannah.gnu.org/releases/freetype/freetype-${FREETYPE_VERSION}.tar.gz
-  )  
-  FetchContent_GetProperties(freetype)
-  # Have we downloaded yet?
-  if (NOT freetype_POPULATED) 
-    set(FETCHCONTENT_QUIET NO)
-    FetchContent_Populate(freetype)
-    add_subdirectory(${freetype_SOURCE_DIR} ${freetype_BINARY_DIR})
-  endif()
-endif()
-
-#--rmlui package--
-set(RMLUI_VERSION 5.1)
-find_package(rmlui ${RMLUI_VERSION} QUIET) # QUIET or REQUIRED
-# If there's none, fetch and build
-if (NOT rmlui_FOUND) 
-  include(FetchContent)
-  FetchContent_Declare(
-    rmlui
-    DOWNLOAD_EXTRACT_TIMESTAMP OFF
-    URL https://github.com/mikke89/RmlUi/archive/refs/tags/${RMLUI_VERSION}.tar.gz
-  )  
-  FetchContent_GetProperties(rmlui)
-  # Have we downloaded yet?
-  if (NOT rmlui_POPULATED) 
-    set(FETCHCONTENT_QUIET NO)
-    FetchContent_Populate(rmlui)
-    add_subdirectory(${rmlui_SOURCE_DIR} ${rmlui_BINARY_DIR})
-  endif()
-endif()
-
 #--Define Your Custom Project Here--
 
 file(GLOB_RECURSE SOURCEFILE_ALL CONFIGURE_DEPENDS
@@ -197,8 +157,6 @@ target_include_directories(game PUBLIC ${3RDPARTY})
 set(3RDPARTY_LIB 
 raylib 
 fmt 
-freetype
-rmlui
 )
 
 #set(raylib_VERBOSE 1)
