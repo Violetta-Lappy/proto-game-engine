@@ -1,21 +1,23 @@
 #pragma once
 
-#include <string>
-#include "../ProgramEngine/KFpsTarget.h"
-#include "../ProgramEngine/KRefreshRate.h"
+#pragma once
 
-class GameProgramConfig {
+#include <string>
+#include "KFpsTarget.h"
+#include "KRefreshRate.h"
+
+class ENGINEProgramConfig {
 private:
 	std::string str_programName = "GameProgramExample";
 	std::string str_programSpec = "Raylib OpenGL Windows x64";
-	int i32_screenWidth = 800; //def: 800
-	int i32_screenHeight = 600; //def: 600
+	int i32_screenWidth = 1280; //def: 800
+	int i32_screenHeight = 720; //def: 600
 	int i32_targetFps = KFpsTarget::K_60; //def: 60
 	int i32_refreshRate = KRefeshRate::K_30; //def: 30
 public:
-	GameProgramConfig() {
+	ENGINEProgramConfig() {
 	}
-	~GameProgramConfig() {
+	~ENGINEProgramConfig() {
 	}
 public:
 	void Set_ProgramName(std::string arg_name) {
@@ -32,7 +34,7 @@ public:
 	/// </summary>
 	void Set_TargetFps(int arg_value) {
 		i32_targetFps = arg_value;
-	}	
+	}
 	/// <summary>
 	/// Please use constant class KRefreshRate
 	/// </summary>
