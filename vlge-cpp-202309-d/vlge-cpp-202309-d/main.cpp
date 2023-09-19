@@ -6,9 +6,7 @@
 
 #include "fmt/format.h"
 
-int main(int argc, char* argv[]) {
-	// Initialization
-	//--------------------------------------------------------------------------------------
+int main(int argc, char* argv[]) {	
 	int screenWidth = 1280;
 	int screenHeight = 800;
 
