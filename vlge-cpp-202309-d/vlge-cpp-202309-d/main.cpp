@@ -17,14 +17,17 @@
 #include "imgui.h"
 #include "rlImGui.h"
 
+#include "fmt/format.h"
+
 int main(int argc, char* argv[]) {
 	// Initialization
 	//--------------------------------------------------------------------------------------
 	int screenWidth = 1280;
 	int screenHeight = 800;
 
-	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
-	InitWindow(screenWidth, screenHeight, "vlge-cpp-202309-d");
+	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);	
+
+	InitWindow(screenWidth, screenHeight, fmt::format("{0}, {1}, {2}", "helloworld", "fmt", "hoanglongplanner").c_str());
 	SetTargetFPS(60);
 	rlImGuiSetup(true);
 

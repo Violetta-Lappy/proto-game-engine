@@ -1,3 +1,4 @@
+# https://cmake.org/cmake/help/latest/module/FetchContent.html
 # FetchContent is available in 3.11+
 cmake_minimum_required(VERSION 3.11) 
 
@@ -7,6 +8,8 @@ project(vlge-cpp-202309-d)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Dependencies
+
+#--raylib package--
 set(RAYLIB_VERSION 4.5.0)
 find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
 if (NOT raylib_FOUND) # If there's none, fetch and build raylib
@@ -25,7 +28,24 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   endif()
 endif()
 
-# add_subdirectory(3rdparty/imgui)
+#--fmt package--
+set(FMT_VERSION 10.1.1)
+find_package(fmt ${FMT_VERSION} QUIET) # QUIET or REQUIRED
+if (NOT fmt_FOUND) # If there's none, fetch and build raylib
+  include(FetchContent)
+  FetchContent_Declare(
+    fmt
+    DOWNLOAD_EXTRACT_TIMESTAMP OFF
+    URL https://github.com/fmtlib/fmt/archive/refs/tags/${FMT_VERSION}.tar.gz
+  )  
+  FetchContent_GetProperties(fmt)
+  # Have we downloaded yet?
+  if (NOT fmt_POPULATED) 
+    set(FETCHCONTENT_QUIET NO)
+    FetchContent_Populate(fmt)
+    add_subdirectory(${fmt_SOURCE_DIR} ${fmt_BINARY_DIR})
+  endif()
+endif()
 
 #--Define Your Custom Project Here--
 
@@ -125,7 +145,8 @@ add_executable(game game.cpp ${SOURCEFILE_GAME})
 
 set(3RDPARTY 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui" 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui")
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui"
+)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${3RDPARTY})
 target_include_directories(launcher PUBLIC ${3RDPARTY})
@@ -134,10 +155,10 @@ target_include_directories(game PUBLIC ${3RDPARTY})
 #target_include_directories(helpful PUBLIC ${3RDPARTY})
 
 #set(raylib_VERBOSE 1)
-target_link_libraries(${PROJECT_NAME} raylib)
-target_link_libraries(launcher raylib)
-target_link_libraries(app raylib)
-target_link_libraries(game raylib)
+target_link_libraries(${PROJECT_NAME} raylib fmt)
+target_link_libraries(launcher raylib fmt)
+target_link_libraries(app raylib fmt)
+target_link_libraries(game raylib fmt)
 #target_link_libraries(helpful raylib)
 
 # Web Configurations
