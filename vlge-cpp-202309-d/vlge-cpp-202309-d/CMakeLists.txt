@@ -31,7 +31,8 @@ endif()
 #--fmt package--
 set(FMT_VERSION 10.1.1)
 find_package(fmt ${FMT_VERSION} QUIET) # QUIET or REQUIRED
-if (NOT fmt_FOUND) # If there's none, fetch and build raylib
+# If there's none, fetch and build
+if (NOT fmt_FOUND) 
   include(FetchContent)
   FetchContent_Declare(
     fmt
@@ -44,6 +45,46 @@ if (NOT fmt_FOUND) # If there's none, fetch and build raylib
     set(FETCHCONTENT_QUIET NO)
     FetchContent_Populate(fmt)
     add_subdirectory(${fmt_SOURCE_DIR} ${fmt_BINARY_DIR})
+  endif()
+endif()
+
+#--freetype package--
+set(FREETYPE_VERSION 2.13.2)
+find_package(freetype ${FREETYPE_VERSION} QUIET) # QUIET or REQUIRED
+# If there's none, fetch and build
+if (NOT freetype_FOUND) 
+  include(FetchContent)
+  FetchContent_Declare(
+    freetype
+    DOWNLOAD_EXTRACT_TIMESTAMP OFF
+    URL https://download.savannah.gnu.org/releases/freetype/freetype-${FREETYPE_VERSION}.tar.gz
+  )  
+  FetchContent_GetProperties(freetype)
+  # Have we downloaded yet?
+  if (NOT freetype_POPULATED) 
+    set(FETCHCONTENT_QUIET NO)
+    FetchContent_Populate(freetype)
+    add_subdirectory(${freetype_SOURCE_DIR} ${freetype_BINARY_DIR})
+  endif()
+endif()
+
+#--rmlui package--
+set(RMLUI_VERSION 5.1)
+find_package(rmlui ${RMLUI_VERSION} QUIET) # QUIET or REQUIRED
+# If there's none, fetch and build
+if (NOT rmlui_FOUND) 
+  include(FetchContent)
+  FetchContent_Declare(
+    rmlui
+    DOWNLOAD_EXTRACT_TIMESTAMP OFF
+    URL https://github.com/mikke89/RmlUi/archive/refs/tags/${RMLUI_VERSION}.tar.gz
+  )  
+  FetchContent_GetProperties(rmlui)
+  # Have we downloaded yet?
+  if (NOT rmlui_POPULATED) 
+    set(FETCHCONTENT_QUIET NO)
+    FetchContent_Populate(rmlui)
+    add_subdirectory(${rmlui_SOURCE_DIR} ${rmlui_BINARY_DIR})
   endif()
 endif()
 
@@ -152,13 +193,19 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${3RDPARTY})
 target_include_directories(launcher PUBLIC ${3RDPARTY})
 target_include_directories(app PUBLIC ${3RDPARTY})
 target_include_directories(game PUBLIC ${3RDPARTY})
-#target_include_directories(helpful PUBLIC ${3RDPARTY})
+
+set(3RDPARTY_LIB 
+raylib 
+fmt 
+freetype
+rmlui
+)
 
 #set(raylib_VERBOSE 1)
-target_link_libraries(${PROJECT_NAME} raylib fmt)
-target_link_libraries(launcher raylib fmt)
-target_link_libraries(app raylib fmt)
-target_link_libraries(game raylib fmt)
+target_link_libraries(${PROJECT_NAME} ${3RDPARTY_LIB})
+target_link_libraries(launcher ${3RDPARTY_LIB})
+target_link_libraries(app ${3RDPARTY_LIB})
+target_link_libraries(game ${3RDPARTY_LIB})
 #target_link_libraries(helpful raylib)
 
 # Web Configurations
