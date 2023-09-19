@@ -15,7 +15,7 @@ class ENGINEProgram {
 private:
 	ENGINEProgramConfig m_config;
 public:
-	ENGINEProgramConfig Get_Config() {
+	ENGINEProgramConfig Get_Config() {		
 		return m_config;
 	};
 	void Setup_Config();
