@@ -1,6 +1,6 @@
 #include "ENGINEProgram.h"
 
-void ENGINEProgram::SetupConfig() {		
+void ENGINEProgram::SetupConfig() {
 	bool canIniLoadSuccess = false;
 	if (canIniLoadSuccess) {
 		//setup if detect file
@@ -12,14 +12,14 @@ void ENGINEProgram::SetupConfig() {
 		m_config.Set_ScreenHeight(720);
 		m_config.Set_TargetFps(KFpsTarget::K_60);
 		m_config.Set_RefreshRate(KRefeshRate::K_30);
-	}	
+	}
 
 	fmt::println(GetConfig().Get_ProgramName());
 }
 
 void ENGINEProgram::Start() {
 	SetupConfig();
-	
+
 	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
 
 	InitWindow(GetConfig().Get_ScreenWidth()
@@ -50,49 +50,77 @@ void ENGINEProgram::GuiStart() {
 	rlImGuiSetup(true);
 }
 
-void ENGINEProgram::GuiUpdate(float arg_dt, float arg_unscaledDt) {	
+void ENGINEProgram::GuiUpdate(float arg_dt, float arg_unscaledDt) {
 	rlImGuiBegin();
-	
+
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("ViolettaLappy")) {
 			if (ImGui::MenuItem("Option")) {
 			}
 			ImGui::Separator();
-			if (ImGui::MenuItem("Exit")) {
+			if (ImGui::MenuItem("Quit", "Alt+F4")) {
 			}
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("File")) {
-			if (ImGui::MenuItem("New")) {
+			if (ImGui::MenuItem("New", "Ctrl+N")) {
+			}
+			if (ImGui::MenuItem("New from Template")) {
 			}
 			ImGui::Separator();
-			if (ImGui::MenuItem("Open (Ctrl+O)")) {
+			if (ImGui::MenuItem("Open", "Ctrl+O")) {
 			}
 			if (ImGui::MenuItem("Open Recent")) {
 			}
 			ImGui::Separator();
-			if (ImGui::MenuItem("Save (Ctrl+S)")) {
+			if (ImGui::MenuItem("Recover Last Session")) {
 			}
-			if (ImGui::MenuItem("Save As (Ctrl+Shift+S)")) {
+			if (ImGui::MenuItem("Recover Autosave")) {
 			}
-			if (ImGui::MenuItem("Save New Version (Ctrl+Alt+S)")) {
+			ImGui::Separator();
+			if (ImGui::MenuItem("Save", "Ctrl+S")) {
+			}
+			if (ImGui::MenuItem("Save As", "Ctrl+Shift+S")) {
+			}
+			if (ImGui::MenuItem("Save New Version", "Ctrl+Alt+S")) {
 			}
 			ImGui::Separator();
 			if (ImGui::MenuItem("Close Document")) {
 			}
 			ImGui::EndMenu();
 		}
-		if (ImGui::BeginMenu("Edit")) {			
+		if (ImGui::BeginMenu("Edit")) {
+			if (ImGui::MenuItem("Undo", "CTRL+Z")) {
+			}
+			if (ImGui::MenuItem("Redo", "CTRL+Y")) {
+			} 
+			ImGui::Separator();
+			if (ImGui::MenuItem("Cut", "CTRL+X")) {
+			}
+			if (ImGui::MenuItem("Copy", "CTRL+C")) {
+			}
+			if (ImGui::MenuItem("Paste", "CTRL+V")) {
+			}
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("View")) {
+			if (ImGui::MenuItem("Text Editor")) {
+			}
+			ImGui::Separator();
 			if (ImGui::MenuItem("Simple Overlay")) {
 			}
-			if (ImGui::MenuItem("Debug Console (` or Ctrl+Shift+K)")) {
+			ImGui::Separator();
+			if (ImGui::MenuItem("Terminal Console", "(` | Ctrl+Shift+J)")) {
+			}
+			if (ImGui::MenuItem("Imgui Console", "(` | Ctrl+Shift+K)")) {
+			}
+			if (ImGui::MenuItem("Rmlui Console", "(` | Ctrl+Shift+L)")) {
 			}
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("Option")) {
+			if (ImGui::MenuItem("Program Config")) {
+			}
 			if (ImGui::MenuItem("Window")) {
 			}
 			if (ImGui::MenuItem("Theme Customization")) {
@@ -100,14 +128,19 @@ void ENGINEProgram::GuiUpdate(float arg_dt, float arg_unscaledDt) {
 			ImGui::EndMenu();
 		}		
 		if (ImGui::BeginMenu("Help")) {
-			if (ImGui::MenuItem("Credit")) {
+			if (ImGui::MenuItem("Manual")) {
 			}
 			if (ImGui::MenuItem("About")) {
 			}
 			ImGui::EndMenu();
 		}
+		if (ImGui::BeginMenu("3rdParty")) {
+			if (ImGui::MenuItem("Text Editor")) {
+			}
+			ImGui::EndMenu();
+		}
 		ImGui::EndMainMenuBar();
-	}	
+	}
 
 	// show ImGui Content
 	bool open = true;
@@ -130,7 +163,7 @@ void ENGINEProgram::Gui_ShowOverlay(bool* p_open) {
 		const float PAD = 10.0f;
 		const ImGuiViewport* viewport = ImGui::GetMainViewport();
 		// Use work area to avoid menu-bar/task-bar, if any!
-		ImVec2 work_pos = viewport->WorkPos; 
+		ImVec2 work_pos = viewport->WorkPos;
 		ImVec2 work_size = viewport->WorkSize;
 		ImVec2 window_pos, window_pos_pivot;
 		window_pos.x = (location & 1) ? (work_pos.x + work_size.x - PAD) : (work_pos.x + PAD);
@@ -142,14 +175,18 @@ void ENGINEProgram::Gui_ShowOverlay(bool* p_open) {
 		window_flags |= ImGuiWindowFlags_NoMove;
 	}
 	// Center window
-	else if (location == -2) {		
+	else if (location == -2) {
 		ImGui::SetNextWindowPos(ImGui::GetMainViewport()->GetCenter(), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
 		window_flags |= ImGuiWindowFlags_NoMove;
 	}
 	// Transparent background
-	ImGui::SetNextWindowBgAlpha(0.35f); 
-	if (ImGui::Begin("Example: Simple overlay", p_open, window_flags)) {		
-		ImGui::Text("Simple overlay\n" "(right-click to change position)");
+	ImGui::SetNextWindowBgAlpha(0.35f);
+	if (ImGui::Begin("Example: Simple overlay", p_open, window_flags)) {
+		ImGui::Text("Violetta Lappy - Program Engine \n" "0.0.0 - D - 20230920");
+		ImGui::Separator();
+		ImGui::Text("FPS: | Vertex: | Audio: 0db");
+		ImGui::Separator();
+		ImGui::Text("right-click to change position");
 		ImGui::Separator();
 		if (ImGui::IsMousePosValid())
 			ImGui::Text("Mouse Position: (%.1f,%.1f)", io.MousePos.x, io.MousePos.y);
