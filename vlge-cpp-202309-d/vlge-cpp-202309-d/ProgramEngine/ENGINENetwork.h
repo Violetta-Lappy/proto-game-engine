@@ -2,7 +2,10 @@
 
 class ENGINENetwork {
 public:
-	void Start();
-	void Update();
-	void Terminate();
+	void Host_Start();
+	void Host_Update();
+	void Host_Terminate();
+	void Client_Start();
+	void Client_Update();
+	void Client_Terminate();
 };

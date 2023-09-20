@@ -17,17 +17,35 @@ public:
 		z = arg_z;
 	}
 public:
-	static void Normalize() {		
+	void ToString() {
 	}
-	static void Clamp() {
+public:
+	// TODO: Absolute Number
+	void Round() {
 	}
-	static void Clamp01() {		
+	void Abs() {
+	}
+	void Negative() {
+	}
+	void Normalize() {		
+	}
+	void Clamp() {
+	}
+	void Clamp01() {		
 	}
 public:
 	static const Vector3 Zero() {
 		return Vector3(0, 0, 0);
 	}
 	static const Vector3 One() {
+		return Vector3(1, 1, 1);
+	}
+	// TODO: Proper function
+	static const Vector3 Infinity() {
+		return Vector3(1, 1, 1);
+	}
+	// TODO: Proper function
+	static const Vector3 NegativeInfinity() {
 		return Vector3(1, 1, 1);
 	}
 
@@ -49,13 +67,5 @@ public:
 	}
 	static const Vector3 Right() {
 		return Vector3(1, 1, 1);
-	}
-
-	// TODO: Absolute Number
-	static const Vector3 Abs() {
-		return Vector3(1, 1, 1);
-	}
-	static const Vector3 Negative() {
-		return Vector3(1, 1, 1);
-	}
+	}	
 };
