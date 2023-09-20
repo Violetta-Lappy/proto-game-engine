@@ -1,7 +1,7 @@
 #include "GameProgramExample.h"
 
 GameProgramConfig GameProgramExample::Get_GameProgramConfig() {
-	m_gameProgramConfig.Set_ProgramName("Violetta Lappy - Game Example");
+	m_gameProgramConfig.Set_ProgramName("Violetta Lappy - Game Example - PLEASE CHANGE CONFIG IF SEE THIS");
 	m_gameProgramConfig.Set_ScreenWidth(1280);
 	m_gameProgramConfig.Set_ScreenHeight(720);
 	m_gameProgramConfig.Set_TargetFps(KFpsTarget::K_60);

@@ -3,12 +3,13 @@
 #pragma once
 
 #include <string>
+#include <fmt/format.h>
 #include "KFpsTarget.h"
 #include "KRefreshRate.h"
 
 class ENGINEProgramConfig {
 private:
-	std::string str_programName = "GameProgramExample";
+	std::string str_programName = "Violetta Lappy Engine - Program Example - PLEASE CHANGE CONFIG IF SEE THIS";
 	std::string str_programSpec = "Raylib OpenGL Windows x64";
 	int i32_screenWidth = 1280; //def: 800
 	int i32_screenHeight = 720; //def: 600
@@ -42,16 +43,16 @@ public:
 		i32_refreshRate = arg_value;
 	}
 public:
-	std::string Get_ProgramName() {
-		return str_programName;
+	std::string Get_ProgramName() const {
+		return fmt::format("{0} - {1}", str_programSpec, str_programName);
 	}
-	int Get_ScreenWidth() {
+	int Get_ScreenWidth() const {
 		return i32_screenWidth;
 	}
-	int Get_ScreenHeight() {
+	int Get_ScreenHeight() const {
 		return i32_screenHeight;
 	}
-	int Get_TargetFps() {
+	int Get_TargetFps() const {
 		return i32_targetFps;
 	}
 };

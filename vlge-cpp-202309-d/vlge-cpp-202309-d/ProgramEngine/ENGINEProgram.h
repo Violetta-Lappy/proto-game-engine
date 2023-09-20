@@ -13,17 +13,22 @@
 /// </summary>
 class ENGINEProgram {
 private:
-	ENGINEProgramConfig m_config;
+	mutable ENGINEProgramConfig m_config;
 public:
-	ENGINEProgramConfig Get_Config() {		
+	/// <summary>
+	/// Get usage only, not for set usage !!
+	/// </summary>	
+	ENGINEProgramConfig GetConfig() const {
 		return m_config;
-	};
-	void Setup_Config();
+	};	
+	void SetupConfig();
 public:
 	void Start();
-	void Update(float arg_deltaTime, float arg_unscaledDeltaTime);
+	void Update(float arg_dt, float arg_unscaledDt);
 	void Terminate();
-	void Gui_Start();
-	void Gui_Update(float arg_deltaTime, float arg_unscaledDeltaTime);
-	void Gui_Terminate();
+	void GuiStart();
+	void GuiUpdate(float arg_dt, float arg_unscaledDt);
+	void GuiTerminate();
+private:
+	static void Gui_ShowOverlay(bool* p_open);
 };

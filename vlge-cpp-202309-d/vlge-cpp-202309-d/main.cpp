@@ -2,13 +2,13 @@
 
 int main(int argc, char* argv[]) {
 	
-	//ENGINEProgram program;
+	ENGINEProgram program;
 
-	//program.Start();
+	program.Start();
 	while (!WindowShouldClose()) {
-		//program.Update(0.0f, 0.0f);
+		program.Update(0.0f, 0.0f);
 	}
-	//program.Terminate();
+	program.Terminate();
 	
 	return KProgramExitCode::K_Success;
 }
