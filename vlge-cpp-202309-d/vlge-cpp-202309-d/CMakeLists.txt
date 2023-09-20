@@ -52,12 +52,12 @@ endif()
 
 set(SOURCEFILE_COMMON 
 "${CMAKE_CURRENT_SOURCE_DIR}/ProgramEngine/*.cpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.cpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rlimgui/*.cpp"
 
 "${CMAKE_CURRENT_SOURCE_DIR}/ProgramEngine/*.h"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/*.h"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rlimgui/*.h"
 )
 
 file(GLOB_RECURSE SOURCEFILE_ALL CONFIGURE_DEPENDS
@@ -112,8 +112,10 @@ add_executable(game game.cpp ${SOURCEFILE_GAME})
 #add_executable(helpful helpful.cpp ${SOURCEFILE_HELPFUL})
 
 set(3RDPARTY 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui" 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/rlImgui"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rlimgui" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rmlui" 
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${3RDPARTY})
@@ -124,6 +126,9 @@ target_include_directories(game PUBLIC ${3RDPARTY})
 set(3RDPARTY_LIB 
 raylib 
 fmt 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/freetype/freetype.lib"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/rmlui/RmlCore.lib"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/rmlui/RmlDebugger.lib"
 )
 
 #set(raylib_VERBOSE 1)
