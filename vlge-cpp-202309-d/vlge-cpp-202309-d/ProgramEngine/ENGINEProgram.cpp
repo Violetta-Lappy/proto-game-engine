@@ -1,6 +1,6 @@
 #include "ENGINEProgram.h"
 
-void ENGINEProgram::SetupConfig() {
+void ENGINEProgram::SetupConfig() {		
 	bool canIniLoadSuccess = false;
 	if (canIniLoadSuccess) {
 		//setup if detect file

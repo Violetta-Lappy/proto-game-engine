@@ -2,14 +2,14 @@
 
 // TODO: add functionality
 
-class Vector4 {
+class Vector4Int {
 public:
-	float x;
-	float y;
-	float z;
-	float w;
+	int x;
+	int y;
+	int z;
+	int w;
 public:
-	Vector4(float arg_x, float arg_y, float arg_z, float arg_w) {
+	Vector4Int(int arg_x, int arg_y, int arg_z, int arg_w) {
 		x = arg_x;
 		y = arg_y;
 		z = arg_z;

@@ -3,6 +3,8 @@
 //https://docs.godotengine.org/en/stable/classes/class_vector3.html
 //https://github.com/Unity-Technologies/UnityCsReference/blob/master/Runtime/Export/Math/Vector3.cs
 
+// TODO: add functionality
+
 class Vector3 {
 public:
 	float x;
@@ -15,14 +17,11 @@ public:
 		z = arg_z;
 	}
 public:
-	static void Vector3 Normalize() {
-		return Vector3(0, 0, 0);
+	static void Normalize() {		
 	}
-	static void Vector3 Clamp() {
-		return Vector3(0, 0, 0);
+	static void Clamp() {
 	}
-	static void Vector3 Clamp01() {
-		return Vector3(0, 0, 0);
+	static void Clamp01() {		
 	}
 public:
 	static const Vector3 Zero() {
