@@ -103,7 +103,7 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 	bool open = true;
 	ImGui::ShowDemoWindow(&open);
 
-	Gui_ShowOverlay(&open);
+	ShowOverlay(&open);
 }
 
 void ProgramEditor::Terminate() {	

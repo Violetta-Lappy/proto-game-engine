@@ -22,18 +22,18 @@ void Program::SetupConfig() {
 		// TODO: if detect programconfig.ini, set up
 	}
 	else {
-		m_config.Set_ProgramName("ENGINEProgram");
-		m_config.Set_ScreenWidth(1280);
-		m_config.Set_ScreenHeight(720);
-		m_config.Set_TargetFps(KFpsTarget::K_60);
-		m_config.Set_RefreshRate(KRefeshRate::K_30);
+		m_config.SetProgramName("ENGINEProgram");
+		m_config.SetScreenWidth(1280);
+		m_config.SetScreenHeight(720);
+		m_config.SetTargetFps(KFpsTarget::K_60);
+		m_config.SetRefreshRate(KRefeshRate::K_30);
 	}	
 }
 
 void Program::Awake() {
 	//Prepare config file
 	SetupConfig();
-	fmt::println(GetConfig().Get_ProgramName());
+	fmt::println(GetConfig().GetProgramName());
 	fmt::println("Violetta Lappy: Setup Global Config - DONE [O]");
 
 	//Setup all services with common global config
@@ -52,10 +52,10 @@ void Program::Start() {
 	//--SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO--	
 	//Setup raylib context
 	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
-	InitWindow(GetConfig().Get_ScreenWidth()
-		, GetConfig().Get_ScreenHeight()
-		, GetConfig().Get_ProgramName().c_str());
-	SetTargetFPS(GetConfig().Get_TargetFps());
+	InitWindow(GetConfig().GetScreenWidth()
+		, GetConfig().GetScreenHeight()
+		, GetConfig().GetProgramName().c_str());
+	SetTargetFPS(GetConfig().GetTargetFps());
 	//SetupImgui
 	rlImGuiSetup(true);
 	
@@ -83,5 +83,5 @@ void Program::Update(float arg_dt, float arg_unscaledDt) {
 }
 
 void Program::Terminate() {
-	~Program();
+	Program::~Program();
 }

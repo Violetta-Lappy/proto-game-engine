@@ -3,6 +3,9 @@
 #include <string>
 #include <fmt/format.h>
 
+#include <ae/KFpsTarget.h>
+#include <ae/KRefreshRate.h>
+
 class ProgramConfig {
 private:
 	std::string str_programName = "Violetta Lappy Framework - Program Example - PLEASE CHANGE CONFIG IF SEE THIS";

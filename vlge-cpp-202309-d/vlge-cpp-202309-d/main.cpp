@@ -1,9 +1,13 @@
-#include <ae/LoggerConsole.h>
+#include <raylib.h>
+#include <engine/Program.h>
 
 int main(int argc, char* argv[]) {		
-	LoggerConsole::Info("Hello There");
-	LoggerConsole::Warn("Hello There");
-	LoggerConsole::Caution("Hello There");
-	LoggerConsole::Fatal("Hello There");
+	Program program;
+	program.Awake();
+	program.Start();
+	while (!WindowShouldClose) {
+		program.Update(0.0f, 0.0f);
+	}	
+	program.Terminate();
 	return 0;
 }
