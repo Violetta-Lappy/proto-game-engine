@@ -6,6 +6,12 @@
 
 class GuiText {
 public:
+	int fontType;
+	int fontSize;
+public:
+	void SetFont();
+	void SetFontSize();
+public:
 	void OnPointerPress();
 	void OnPointerHold();
 	void OnPointerRelease();
