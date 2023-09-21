@@ -1,18 +1,11 @@
 #include "Program.h"
 
 Program::Program() {	
+	Awake();
 }
 
-Program::~Program() {
-	//everything must be reverse order
-	m_network.Terminate();
-	m_render.Terminate();
-	m_editor.Terminate();
-	m_processor.Terminate();
-
-	//SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO	
-	rlImGuiShutdown();
-	CloseWindow();
+Program::~Program() {	
+	Terminate();
 }
 
 void Program::SetupConfig() {
@@ -83,5 +76,13 @@ void Program::Update(float arg_dt, float arg_unscaledDt) {
 }
 
 void Program::Terminate() {
-	Program::~Program();
+	//everything must be reverse order
+	m_network.Terminate();
+	m_render.Terminate();
+	m_editor.Terminate();
+	m_processor.Terminate();
+
+	//SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO	
+	rlImGuiShutdown();
+	CloseWindow();
 }
