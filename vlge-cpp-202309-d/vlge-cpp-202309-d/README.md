@@ -1,3 +1,7 @@
+# Introduction
+
+It occur to me that I'm making a Framework to work with this stuff
+
 # raylib CMake Project
 
 This provides a base project template which builds with [CMake](https://cmake.org).
