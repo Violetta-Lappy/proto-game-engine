@@ -1,14 +1,15 @@
 #pragma once
 
-#include <raylib.h>
+//for Raylib only
+
 #include "ProgramConfig.h"
 
-class ProgramProcessor {
+class ProgramRender {
 private:
 	ProgramConfig m_config;
 public:
-	ProgramProcessor();
-	~ProgramProcessor();
+	ProgramRender();
+	~ProgramRender();
 public:
 	ProgramConfig GetConfig() const {
 		return m_config;
@@ -17,7 +18,7 @@ public:
 		m_config = arg_config;
 	}
 public:
-	void Start();	
-	void Update(float arg_dt, float arg_unscaledDt);	
+	void Start();
+	void Update(float arg_dt, float arg_unscaledDt);
 	void Terminate();
 };

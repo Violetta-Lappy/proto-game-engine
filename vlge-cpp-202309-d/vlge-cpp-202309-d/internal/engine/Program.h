@@ -1,8 +1,14 @@
 #pragma once
 
+#include <raylib.h>
+#include <imgui.h>
+#include <rlImGui.h>
+
 #include "ProgramConfig.h"
+
 #include "ProgramProcessor.h"
 #include "ProgramEditor.h"
+#include "ProgramRender.h"
 
 #include "ProgramNetwork.h"
 
@@ -11,7 +17,8 @@ private:
 	ProgramConfig m_config;
 	ProgramProcessor m_processor;
 	ProgramEditor m_editor;
-	ProgramNetwork m_network;
+	ProgramRender m_render;
+	ProgramNetwork m_network;	
 public:
 	Program();
 	~Program();
@@ -21,7 +28,8 @@ public:
 	}
 	void SetupConfig();
 public:
+	void Awake();
 	void Start();
-	void Update(float arg_dt, float arg_unscaledDt);
+	void Update(float arg_dt, float arg_unscaledDt);	
 	void Terminate();
 };

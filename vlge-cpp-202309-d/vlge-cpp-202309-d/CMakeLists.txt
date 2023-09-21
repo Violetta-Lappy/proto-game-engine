@@ -51,65 +51,50 @@ endif()
 #--Define Your Custom Project Here--
 
 set(SOURCEFILE_COMMON 
-"${CMAKE_CURRENT_SOURCE_DIR}/ProgramEngine/*.cpp"
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.cpp" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.cpp" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.cpp" 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rlimgui/*.cpp"
 
-"${CMAKE_CURRENT_SOURCE_DIR}/ProgramEngine/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.h" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.h" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.h" 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.h"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rlimgui/*.h"
 )
 
 file(GLOB_RECURSE SOURCEFILE_ALL CONFIGURE_DEPENDS
 ${SOURCEFILE_COMMON}
-"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.cpp"    
-"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.cpp"    
-
-"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.h"    
-"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.h"    
 )
 
 file(GLOB_RECURSE SOURCEFILE_LAUNCHER CONFIGURE_DEPENDS
 ${SOURCEFILE_COMMON}
-"${CMAKE_CURRENT_SOURCE_DIR}/LauncherEngine/*.cpp"    
-"${CMAKE_CURRENT_SOURCE_DIR}/LauncherProgram/*.cpp"    
-
-"${CMAKE_CURRENT_SOURCE_DIR}/LauncherEngine/*.h"    
-"${CMAKE_CURRENT_SOURCE_DIR}/LauncherProgram/*.h"    
 )
 
 file(GLOB_RECURSE SOURCEFILE_APP CONFIGURE_DEPENDS
 ${SOURCEFILE_COMMON}
-"${CMAKE_CURRENT_SOURCE_DIR}/AppEngine/*.cpp"    
-"${CMAKE_CURRENT_SOURCE_DIR}/AppProgram/*.cpp"    
-
-"${CMAKE_CURRENT_SOURCE_DIR}/AppEngine/*.h"    
-"${CMAKE_CURRENT_SOURCE_DIR}/AppProgram/*.h"    
 )
 
 file(GLOB_RECURSE SOURCEFILE_GAME CONFIGURE_DEPENDS
 ${SOURCEFILE_COMMON}
-"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.cpp"    
-"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.cpp"    
-
-"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.h"    
-"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.h"    
 )
 
 file(GLOB_RECURSE SOURCEFILE_HELPFUL CONFIGURE_DEPENDS
 ${SOURCEFILE_COMMON}
-"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.cpp"    
-"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.cpp"    
-
-"${CMAKE_CURRENT_SOURCE_DIR}/GameEngine/*.h"    
-"${CMAKE_CURRENT_SOURCE_DIR}/GameProgram/*.h"    
 )
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCEFILE_ALL})
-add_executable(launcher launcher.cpp ${SOURCEFILE_LAUNCHER})
-add_executable(app app.cpp ${SOURCEFILE_APP})
-add_executable(game game.cpp ${SOURCEFILE_GAME})
+#add_executable(launcher launcher.cpp ${SOURCEFILE_LAUNCHER})
+#add_executable(app app.cpp ${SOURCEFILE_APP})
+#add_executable(game game.cpp ${SOURCEFILE_GAME})
 #add_executable(helpful helpful.cpp ${SOURCEFILE_HELPFUL})
+
+set(INTERNALPARTY
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/include" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge" 
+)
 
 set(3RDPARTY 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include" 
@@ -118,10 +103,10 @@ set(3RDPARTY
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rmlui" 
 )
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${3RDPARTY})
-target_include_directories(launcher PUBLIC ${3RDPARTY})
-target_include_directories(app PUBLIC ${3RDPARTY})
-target_include_directories(game PUBLIC ${3RDPARTY})
+target_include_directories(${PROJECT_NAME} PUBLIC ${INTERNALPARTY} PUBLIC ${3RDPARTY})
+#target_include_directories(launcher)
+#target_include_directories(app)
+#target_include_directories(game)
 
 set(3RDPARTY_LIB 
 raylib 
@@ -133,10 +118,10 @@ fmt
 
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} ${3RDPARTY_LIB})
-target_link_libraries(launcher ${3RDPARTY_LIB})
-target_link_libraries(app ${3RDPARTY_LIB})
-target_link_libraries(game ${3RDPARTY_LIB})
-#target_link_libraries(helpful raylib)
+#target_link_libraries(launcher)
+#target_link_libraries(app)
+#target_link_libraries(game)
+#target_link_libraries(helpful)
 
 # Web Configurations
 if (${PLATFORM} STREQUAL "Web")
