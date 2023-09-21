@@ -3,7 +3,6 @@
 //https://gitlab.com/libeigen/eigen/-/blob/master/Eigen/src/Geometry/Quaternion.h
 //https://github.com/Unity-Technologies/Unity.Mathematics/blob/master/src/Unity.Mathematics/quaternion.cs
 
-#include <string>
 #include <fmt/format.h>
 
 class Quaternion {
