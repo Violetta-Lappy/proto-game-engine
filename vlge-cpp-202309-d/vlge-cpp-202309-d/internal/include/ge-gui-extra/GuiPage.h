@@ -1,6 +1,6 @@
 #pragma once
 
-class Scene {
+class GuiPage {
 public:
 	void OnLoad();
 	void OnDestroy();
