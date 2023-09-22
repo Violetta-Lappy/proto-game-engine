@@ -6,6 +6,10 @@
 #include <ae/KFpsTarget.h>
 #include <ae/KRefreshRate.h>
 
+#define VIOLETTALAPPY_RELEASE "D"
+#define VIOLETTALAPPY_YEARMONTH 202309
+#define VIOLETTALAPPY_VERSION "0.0.0"
+
 class ProgramConfig {
 private:
 	std::string str_programName = "Violetta Lappy Framework - Program Example - PLEASE CHANGE CONFIG IF SEE THIS";
@@ -20,21 +24,27 @@ public:
 	~ProgramConfig() {
 	}
 public:
+	//--GLOBAL CONFIG--
 	void SetProgramName(std::string arg_name) {
 		str_programName = arg_name;
 	}
+	//--PROGRAM SYSTEM CONFIG--
+	void SetTargetFps(int arg_value) {
+		i32_targetFps = arg_value;
+	}
+	void SetRefreshRate(int arg_value) {
+		i32_refreshRate = arg_value;
+	}
+	//--DISPLAY CONFIG--
 	void SetScreenWidth(int arg_value) {
 		i32_screenWidth = arg_value;
 	}
 	void SetScreenHeight(int arg_value) {
 		i32_screenHeight = arg_value;
-	}	
-	void SetTargetFps(int arg_value) {
-		i32_targetFps = arg_value;
-	}	
-	void SetRefreshRate(int arg_value) {
-		i32_refreshRate = arg_value;
-	}
+	}		
+	//--GRAPHIC CONFIG--
+	//--OPENGL RENDER CONFIG--
+	//--AUDIO CONFIG--
 public:
 	std::string GetProgramName() const {
 		return fmt::format("{0} - {1}", str_programSpec, str_programName);

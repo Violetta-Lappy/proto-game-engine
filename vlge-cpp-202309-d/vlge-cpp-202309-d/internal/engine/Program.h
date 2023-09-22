@@ -33,7 +33,7 @@ limitations under the License.
 class Program {
 private:
 	ProgramConfig m_config;
-	//ProgramProcessor m_processor;
+	ProgramProcessor m_processor;
 	ProgramEditor m_editor;
 	//ProgramRender m_render;
 	//ProgramAudio m_audio;
@@ -46,8 +46,7 @@ public:
 		return m_config;
 	}
 	void SetupConfig();
-public:
-	void Awake();
+public:	
 	void Start();
 	void Update(float arg_dt, float arg_unscaledDt);	
 	void Terminate();

@@ -2,6 +2,7 @@
 
 #include <raylib.h>
 #include <imgui.h>
+#include <imgui_internal.h>
 #include <rlImGui.h>
 
 #include "fmt/format.h"
@@ -34,4 +35,5 @@ public:
 	void Terminate();
 private:
 	static void ShowOverlay(bool* p_open);
+	static void ShowAboutWindow(bool* p_open);
 };

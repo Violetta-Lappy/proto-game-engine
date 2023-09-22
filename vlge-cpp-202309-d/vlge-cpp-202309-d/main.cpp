@@ -1,8 +1,7 @@
 #include <engine/Program.h>
 
 int main(int argc, char* argv[]) {		
-	Program program;
-	program.Awake();
+	Program program;	
 	program.Start();
 	while (!WindowShouldClose()) {
 		program.Update(0.0f, 0.0f);
