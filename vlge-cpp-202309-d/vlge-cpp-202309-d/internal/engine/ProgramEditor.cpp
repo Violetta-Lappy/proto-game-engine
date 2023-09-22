@@ -7,9 +7,15 @@ ProgramEditor::~ProgramEditor() {
 }
 
 void ProgramEditor::Start() {	
+	//SetupImgui
+	rlImGuiSetup(true);
 }
 
 void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {	
+	//SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO	
+	BeginDrawing();
+	rlImGuiBegin();
+
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("ViolettaLappy")) {
 			if (ImGui::MenuItem("Option")) {
@@ -104,9 +110,16 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 	ImGui::ShowDemoWindow(&open);
 
 	ShowOverlay(&open);
+
+	//SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO	
+	rlImGuiEnd();
+	EndDrawing();
 }
 
 void ProgramEditor::Terminate() {	
+	//SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO	
+	rlImGuiShutdown();
+	CloseWindow();
 }
 
 void ProgramEditor::ShowOverlay(bool* p_open) {

@@ -3,8 +3,6 @@
 #include <raylib.h>
 #include <imgui.h>
 #include <rlImGui.h>
-#include <rmlui/Core.h>
-#include <rmlui/Debugger.h>
 
 #include "fmt/format.h"
 
@@ -15,8 +13,8 @@
 
 class ProgramEditor {
 private:
-	ProgramProcessor m_processor;
-	ProgramConfig m_config;
+	mutable ProgramProcessor m_processor;
+	mutable ProgramConfig m_config;
 public:
 	ProgramEditor();
 	~ProgramEditor();

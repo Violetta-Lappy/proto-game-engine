@@ -1,11 +1,9 @@
 #include "Program.h"
 
-Program::Program() {	
-	Awake();
+Program::Program() {		
 }
 
-Program::~Program() {	
-	Terminate();
+Program::~Program() {		
 }
 
 void Program::SetupConfig() {
@@ -27,17 +25,8 @@ void Program::Awake() {
 	//Prepare config file
 	SetupConfig();
 	fmt::println(GetConfig().GetProgramName());
-	fmt::println("Violetta Lappy: Setup Global Config - DONE [O]");
-
-	//Setup all services with common global config
-	m_processor.SetConfig(GetConfig());
-	m_editor.SetConfig(GetConfig());
-	m_render.SetConfig(GetConfig());
-	m_network.SetConfig(GetConfig());	
+	fmt::println("Violetta Lappy: Setup Global Config - DONE [O]");	
 	fmt::println("Violetta Lappy: Setup All Services with Global Config - DONE [O]");
-
-	//Setup individual services
-	m_editor.SetProcessor(m_processor);	
 	fmt::println("Violetta Lappy: Setup All Individual Services - DONE [O]");
 }
 
@@ -48,41 +37,115 @@ void Program::Start() {
 	InitWindow(GetConfig().GetScreenWidth()
 		, GetConfig().GetScreenHeight()
 		, GetConfig().GetProgramName().c_str());
-	SetTargetFPS(GetConfig().GetTargetFps());
-	//SetupImgui
+	SetTargetFPS(GetConfig().GetTargetFps());		
 	rlImGuiSetup(true);
-	
-	//Start program services
-	m_processor.Start();
-	m_editor.Start();
-	m_render.Start();
-	m_network.Start();
 }
 
 void Program::Update(float arg_dt, float arg_unscaledDt) {
-	//SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO	
 	BeginDrawing();
+	ClearBackground(DARKGRAY);
+
 	rlImGuiBegin();
 
-	//Update all services
-	m_processor.Update(arg_dt, arg_unscaledDt);
-	m_editor.Update(arg_dt, arg_unscaledDt);
-	m_render.Update(arg_dt, arg_unscaledDt);
-	m_network.Update(arg_dt, arg_unscaledDt);
+	if (ImGui::BeginMainMenuBar()) {
+		if (ImGui::BeginMenu("ViolettaLappy")) {
+			if (ImGui::MenuItem("Option")) {
+			}
+			ImGui::Separator();
+			if (ImGui::MenuItem("Quit", "Alt+F4")) {
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("File")) {
+			if (ImGui::MenuItem("New", "Ctrl+N")) {
+			}
+			if (ImGui::MenuItem("New from Template")) {
+			}
+			ImGui::Separator();
+			if (ImGui::MenuItem("Open", "Ctrl+O")) {
+			}
+			if (ImGui::MenuItem("Open Recent")) {
+			}
+			ImGui::Separator();
+			if (ImGui::MenuItem("Recover Last Session")) {
+			}
+			if (ImGui::MenuItem("Recover Autosave")) {
+			}
+			ImGui::Separator();
+			if (ImGui::MenuItem("Save", "Ctrl+S")) {
+			}
+			if (ImGui::MenuItem("Save As", "Ctrl+Shift+S")) {
+			}
+			if (ImGui::MenuItem("Save New Version", "Ctrl+Alt+S")) {
+			}
+			ImGui::Separator();
+			if (ImGui::MenuItem("Close Document")) {
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Edit")) {
+			if (ImGui::MenuItem("Undo", "CTRL+Z")) {
+			}
+			if (ImGui::MenuItem("Redo", "CTRL+Y")) {
+			}
+			ImGui::Separator();
+			if (ImGui::MenuItem("Cut", "CTRL+X")) {
+			}
+			if (ImGui::MenuItem("Copy", "CTRL+C")) {
+			}
+			if (ImGui::MenuItem("Paste", "CTRL+V")) {
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("View")) {
+			if (ImGui::MenuItem("Text Editor")) {
+			}
+			ImGui::Separator();
+			if (ImGui::MenuItem("Simple Overlay")) {
+			}
+			ImGui::Separator();
+			if (ImGui::MenuItem("Terminal Console", "(` | Ctrl+Shift+J)")) {
+			}
+			if (ImGui::MenuItem("Imgui Console", "(` | Ctrl+Shift+K)")) {
+			}
+			if (ImGui::MenuItem("Rmlui Console", "(` | Ctrl+Shift+L)")) {
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Option")) {
+			if (ImGui::MenuItem("Program Config")) {
+			}
+			if (ImGui::MenuItem("Window")) {
+			}
+			if (ImGui::MenuItem("Theme Customization")) {
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Help")) {
+			if (ImGui::MenuItem("Manual")) {
+			}
+			if (ImGui::MenuItem("About")) {
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("3rdParty")) {
+			if (ImGui::MenuItem("Text Editor")) {
+			}
+			ImGui::EndMenu();
+		}
+		ImGui::EndMainMenuBar();
+	}
 
-	//SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO	
+	// show ImGui Content
+	bool open = true;
+	ImGui::ShowDemoWindow(&open);	
+
 	rlImGuiEnd();
+
 	EndDrawing();
 }
 
 void Program::Terminate() {
-	//everything must be reverse order
-	m_network.Terminate();
-	m_render.Terminate();
-	m_editor.Terminate();
-	m_processor.Terminate();
-
-	//SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO	
 	rlImGuiShutdown();
 	CloseWindow();
 }

@@ -92,6 +92,7 @@ add_executable(${PROJECT_NAME} main.cpp ${SOURCEFILE_ALL})
 
 set(INTERNALPARTY
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/engine" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge" 

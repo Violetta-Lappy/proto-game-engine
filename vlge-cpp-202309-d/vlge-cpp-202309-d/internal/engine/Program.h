@@ -26,15 +26,18 @@ limitations under the License.
 #include "ProgramEditor.h"
 #include "ProgramRender.h"
 
+#include "ProgramAudio.h"
 #include "ProgramNetwork.h"
+
 
 class Program {
 private:
 	ProgramConfig m_config;
-	ProgramProcessor m_processor;
+	//ProgramProcessor m_processor;
 	ProgramEditor m_editor;
-	ProgramRender m_render;
-	ProgramNetwork m_network;	
+	//ProgramRender m_render;
+	//ProgramAudio m_audio;
+	//ProgramNetwork m_network;	
 public:
 	Program();
 	~Program();
