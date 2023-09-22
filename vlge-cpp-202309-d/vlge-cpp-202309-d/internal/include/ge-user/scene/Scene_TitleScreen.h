@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ge/Scene.h>
+#include <ge/scene/Scene.h>
 
 class Scene_TitleScreen : Scene {
 	// Inherited via Scene

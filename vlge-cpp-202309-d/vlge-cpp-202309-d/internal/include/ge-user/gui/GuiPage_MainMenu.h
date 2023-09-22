@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ge/GuiPage.h>
+#include <ge/gui/GuiPage.h>
 
 class GuiPage_MainMenu : GuiPage {
 	// Inherited via GuiPage

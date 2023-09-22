@@ -1,6 +1,6 @@
 #include "ProgramEditor.h"
 
-ProgramEditor::ProgramEditor() {
+ProgramEditor::ProgramEditor() {	
 }
 
 ProgramEditor::~ProgramEditor() {
@@ -10,6 +10,8 @@ void ProgramEditor::Start() {
 }
 
 void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
+	static bool h_isShowContentDrawer = false;
+
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("ViolettaLappy")) {
 			if (ImGui::MenuItem("Option")) {
@@ -103,37 +105,35 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_MenuBar;
 	float height = ImGui::GetFrameHeight();
 	if (ImGui::BeginViewportSideBar("##SecondaryMenuBar", viewport, ImGuiDir_Up, height, window_flags)) {
-		if (ImGui::BeginMenuBar()) {
-			ImGui::Text("Secondary Menu Bar");
-
-			if (ImGui::BeginMenu("Hand")) {
-				ImGui::EndMenu();
-			}
+		if (ImGui::BeginMenuBar()) {			
 			if (ImGui::BeginMenu("Play[]")) {
-				if (ImGui::MenuItem("In Editor")) {
+				if (ImGui::Button("In Editor")) {
 				}
-				if (ImGui::MenuItem("In Seperate Window")) {
+				if (ImGui::Button("In Seperate Window")) {
 				}
 				ImGui::EndMenu();
 			}
-			if (ImGui::BeginMenu("Pause")) {
-				ImGui::EndMenu();
+			if (ImGui::Button("Pause")) {
 			}
-			if (ImGui::BeginMenu("Next")) {
-				ImGui::EndMenu();
+			if (ImGui::Button("Next")) {
 			}
-
 			ImGui::EndMenuBar();
 		}
 		ImGui::End();
 	}
 	if (ImGui::BeginViewportSideBar("##MainStatusBar", viewport, ImGuiDir_Down, height, window_flags)) {
 		if (ImGui::BeginMenuBar()) {
-			if (ImGui::Button("Content")) {
+			if (ImGui::Button("Content Drawer")) {				
+				if (h_isShowContentDrawer) {
+					DisableContentDrawer(&h_isShowContentDrawer);
+				}
+				else {
+					EnableContentDrawer(&h_isShowContentDrawer);
+				}				
 			}
-			if (ImGui::Button("Cmd")) {
+			if (ImGui::Button("Cmd Console")) {
 			}
-			if (ImGui::Button("Compile")) {
+			if (ImGui::Button("Compile")) {								
 			}
 			ImGui::EndMenuBar();
 		}
@@ -141,7 +141,7 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 	}
 
 	// show ImGui Content
-	bool open = true;
+	bool open = false;
 	ImGui::ShowDemoWindow(&open);
 
 	ShowWorkspaceScene(&open);
@@ -149,26 +149,29 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 
 	ShowAboutWindow(&open);
 	ShowOverlay(&open);
-	ShowContentDrawer(&open);
+
+	if (h_isShowContentDrawer) {
+		ShowContentDrawer(&h_isShowContentDrawer);
+	}	
 }
 
 void ProgramEditor::Terminate() {
 	fmt::println("Violetta Lappy: ProgramEditor - Terminate Success [O]");
 }
 
-void ProgramEditor::ShowWorkspaceScene(bool* p_open) {
-	if (ImGui::Begin("Scene", p_open)) {
+void ProgramEditor::ShowWorkspaceScene(bool* arg_status) {
+	if (ImGui::Begin("Scene", arg_status)) {
 	}
 	ImGui::End();
 }
 
-void ProgramEditor::ShowWorkspaceGame(bool* p_open) {
-	if (ImGui::Begin("Game", p_open)) {
+void ProgramEditor::ShowWorkspaceGame(bool* arg_status) {
+	if (ImGui::Begin("Game", arg_status)) {
 	}
 	ImGui::End();
 }
 
-void ProgramEditor::ShowOverlay(bool* p_open) {
+void ProgramEditor::ShowOverlay(bool* arg_status) {
 	static int location = 3;
 	ImGuiIO& io = ImGui::GetIO();
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoFocusOnAppearing | ImGuiWindowFlags_NoNav;
@@ -194,7 +197,7 @@ void ProgramEditor::ShowOverlay(bool* p_open) {
 	}
 	// Transparent background
 	ImGui::SetNextWindowBgAlpha(0.35f);
-	if (ImGui::Begin("Example: Simple overlay", p_open, window_flags)) {
+	if (ImGui::Begin("Example: Simple overlay", arg_status, window_flags)) {
 		ImGui::Text("ViolettaLappyProgramEngine \n" "Release %s - %d - %s", VIOLETTALAPPY_RELEASE, VIOLETTALAPPY_YEARMONTH, VIOLETTALAPPY_VERSION);
 		ImGui::Separator();
 		ImGui::Text("right-click to change position");
@@ -210,7 +213,7 @@ void ProgramEditor::ShowOverlay(bool* p_open) {
 			if (ImGui::MenuItem("Top-right", NULL, location == 1)) location = 1;
 			if (ImGui::MenuItem("Bottom-left", NULL, location == 2)) location = 2;
 			if (ImGui::MenuItem("Bottom-right", NULL, location == 3)) location = 3;
-			if (p_open && ImGui::MenuItem("Close")) *p_open = false;
+			if (arg_status && ImGui::MenuItem("Close")) *arg_status = false;
 			ImGui::EndPopup();
 		}
 	}
@@ -388,7 +391,23 @@ void ProgramEditor::ShowAboutWindow(bool* p_open) {
 }
 
 void ProgramEditor::ShowContentDrawer(bool* p_open) {
-	if (ImGui::Begin("Browser", p_open)) {
+	if (ImGui::Begin("Content Drawer", p_open)) {
+	}
+	if (ImGui::BeginPopupContextWindow()) {
+		if (ImGui::MenuItem("Close")) {
+			DisableContentDrawer(p_open);			
+		}
+		ImGui::EndPopup();
 	}
 	ImGui::End();
+}
+
+void ProgramEditor::EnableContentDrawer(bool* arg_status) {
+	*arg_status = true;
+	fmt::println("isShowContentDrawer: {0}", *arg_status);
+}
+
+void ProgramEditor::DisableContentDrawer(bool* arg_status) {
+	*arg_status = false;
+	fmt::println("isShowContentDrawer: {0}", *arg_status);
 }

@@ -15,7 +15,7 @@
 class ProgramEditor {
 private:
 	mutable ProgramProcessor m_processor;
-	mutable ProgramConfig m_config;
+	mutable ProgramConfig m_config;		
 public:
 	ProgramEditor();
 	~ProgramEditor();
@@ -37,7 +37,10 @@ private:
 	static void ShowWorkspaceScene(bool* p_open);
 	static void ShowWorkspaceGame(bool* p_open);
 private:
-	static void ShowOverlay(bool* p_open);
-	static void ShowAboutWindow(bool* p_open);
-	static void ShowContentDrawer(bool* p_open);
+	static void ShowOverlay(bool* arg_status);
+	static void ShowAboutWindow(bool* arg_status);
+	static void ShowContentDrawer(bool* arg_status);
+public:
+	static void EnableContentDrawer(bool* arg_status);
+	static void DisableContentDrawer(bool* arg_status);
 };
