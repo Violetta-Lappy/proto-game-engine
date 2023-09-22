@@ -44,104 +44,11 @@ void Program::Start() {
 void Program::Update(float arg_dt, float arg_unscaledDt) {
 	BeginDrawing();
 	ClearBackground(DARKGRAY);
-
 	rlImGuiBegin();
 
-	if (ImGui::BeginMainMenuBar()) {
-		if (ImGui::BeginMenu("ViolettaLappy")) {
-			if (ImGui::MenuItem("Option")) {
-			}
-			ImGui::Separator();
-			if (ImGui::MenuItem("Quit", "Alt+F4")) {
-			}
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("File")) {
-			if (ImGui::MenuItem("New", "Ctrl+N")) {
-			}
-			if (ImGui::MenuItem("New from Template")) {
-			}
-			ImGui::Separator();
-			if (ImGui::MenuItem("Open", "Ctrl+O")) {
-			}
-			if (ImGui::MenuItem("Open Recent")) {
-			}
-			ImGui::Separator();
-			if (ImGui::MenuItem("Recover Last Session")) {
-			}
-			if (ImGui::MenuItem("Recover Autosave")) {
-			}
-			ImGui::Separator();
-			if (ImGui::MenuItem("Save", "Ctrl+S")) {
-			}
-			if (ImGui::MenuItem("Save As", "Ctrl+Shift+S")) {
-			}
-			if (ImGui::MenuItem("Save New Version", "Ctrl+Alt+S")) {
-			}
-			ImGui::Separator();
-			if (ImGui::MenuItem("Close Document")) {
-			}
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("Edit")) {
-			if (ImGui::MenuItem("Undo", "CTRL+Z")) {
-			}
-			if (ImGui::MenuItem("Redo", "CTRL+Y")) {
-			}
-			ImGui::Separator();
-			if (ImGui::MenuItem("Cut", "CTRL+X")) {
-			}
-			if (ImGui::MenuItem("Copy", "CTRL+C")) {
-			}
-			if (ImGui::MenuItem("Paste", "CTRL+V")) {
-			}
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("View")) {
-			if (ImGui::MenuItem("Text Editor")) {
-			}
-			ImGui::Separator();
-			if (ImGui::MenuItem("Simple Overlay")) {
-			}
-			ImGui::Separator();
-			if (ImGui::MenuItem("Terminal Console", "(` | Ctrl+Shift+J)")) {
-			}
-			if (ImGui::MenuItem("Imgui Console", "(` | Ctrl+Shift+K)")) {
-			}
-			if (ImGui::MenuItem("Rmlui Console", "(` | Ctrl+Shift+L)")) {
-			}
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("Option")) {
-			if (ImGui::MenuItem("Program Config")) {
-			}
-			if (ImGui::MenuItem("Window")) {
-			}
-			if (ImGui::MenuItem("Theme Customization")) {
-			}
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("Help")) {
-			if (ImGui::MenuItem("Manual")) {
-			}
-			if (ImGui::MenuItem("About")) {
-			}
-			ImGui::EndMenu();
-		}
-		if (ImGui::BeginMenu("3rdParty")) {
-			if (ImGui::MenuItem("Text Editor")) {
-			}
-			ImGui::EndMenu();
-		}
-		ImGui::EndMainMenuBar();
-	}
-
-	// show ImGui Content
-	bool open = true;
-	ImGui::ShowDemoWindow(&open);	
+	m_editor.Update(arg_dt, arg_unscaledDt);
 
 	rlImGuiEnd();
-
 	EndDrawing();
 }
 
