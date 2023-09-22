@@ -6,10 +6,10 @@ ProgramEditor::ProgramEditor() {
 ProgramEditor::~ProgramEditor() {
 }
 
-void ProgramEditor::Start() {		
+void ProgramEditor::Start() {
 }
 
-void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {	
+void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("ViolettaLappy")) {
 			if (ImGui::MenuItem("Option")) {
@@ -106,20 +106,20 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 		if (ImGui::BeginMenuBar()) {
 			ImGui::Text("Secondary Menu Bar");
 
-			if (ImGui::BeginMenu("Hand")) {				
+			if (ImGui::BeginMenu("Hand")) {
 				ImGui::EndMenu();
 			}
-			if (ImGui::BeginMenu("Play")) {
+			if (ImGui::BeginMenu("Play[]")) {
 				if (ImGui::MenuItem("In Editor")) {
 				}
 				if (ImGui::MenuItem("In Seperate Window")) {
-				}				
+				}
 				ImGui::EndMenu();
 			}
-			if (ImGui::BeginMenu("Engine-Pause")) {
+			if (ImGui::BeginMenu("Pause")) {
 				ImGui::EndMenu();
 			}
-			if (ImGui::BeginMenu("Engine-Next")) {
+			if (ImGui::BeginMenu("Next")) {
 				ImGui::EndMenu();
 			}
 
@@ -129,12 +129,12 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 	}
 	if (ImGui::BeginViewportSideBar("##MainStatusBar", viewport, ImGuiDir_Down, height, window_flags)) {
 		if (ImGui::BeginMenuBar()) {
-			ImGui::Text("Happy status bar");
-
-			if (ImGui::BeginMenu("Compile")) {
-				ImGui::EndMenu();
+			if (ImGui::Button("Content")) {
 			}
-
+			if (ImGui::Button("Cmd")) {
+			}
+			if (ImGui::Button("Compile")) {
+			}
 			ImGui::EndMenuBar();
 		}
 		ImGui::End();
@@ -144,12 +144,28 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 	bool open = true;
 	ImGui::ShowDemoWindow(&open);
 
+	ShowWorkspaceScene(&open);
+	ShowWorkspaceGame(&open);
+
 	ShowAboutWindow(&open);
 	ShowOverlay(&open);
+	ShowContentDrawer(&open);
 }
 
-void ProgramEditor::Terminate() {	
+void ProgramEditor::Terminate() {
 	fmt::println("Violetta Lappy: ProgramEditor - Terminate Success [O]");
+}
+
+void ProgramEditor::ShowWorkspaceScene(bool* p_open) {
+	if (ImGui::Begin("Scene", p_open)) {
+	}
+	ImGui::End();
+}
+
+void ProgramEditor::ShowWorkspaceGame(bool* p_open) {
+	if (ImGui::Begin("Game", p_open)) {
+	}
+	ImGui::End();
 }
 
 void ProgramEditor::ShowOverlay(bool* p_open) {
@@ -179,7 +195,7 @@ void ProgramEditor::ShowOverlay(bool* p_open) {
 	// Transparent background
 	ImGui::SetNextWindowBgAlpha(0.35f);
 	if (ImGui::Begin("Example: Simple overlay", p_open, window_flags)) {
-		ImGui::Text("ViolettaLappyProgramEngine \n" "Release %s - %d - %s", VIOLETTALAPPY_RELEASE, VIOLETTALAPPY_YEARMONTH, VIOLETTALAPPY_VERSION);		
+		ImGui::Text("ViolettaLappyProgramEngine \n" "Release %s - %d - %s", VIOLETTALAPPY_RELEASE, VIOLETTALAPPY_YEARMONTH, VIOLETTALAPPY_VERSION);
 		ImGui::Separator();
 		ImGui::Text("right-click to change position");
 		ImGui::Separator();
@@ -202,10 +218,10 @@ void ProgramEditor::ShowOverlay(bool* p_open) {
 }
 
 void ProgramEditor::ShowAboutWindow(bool* p_open) {
-	if (!ImGui::Begin("About", p_open, ImGuiWindowFlags_AlwaysAutoResize)) {		
+	if (!ImGui::Begin("About", p_open, ImGuiWindowFlags_AlwaysAutoResize)) {
 		ImGui::End();
 		return;
-	}		
+	}
 
 	if (ImGui::BeginPopupContextWindow()) {
 		if (ImGui::MenuItem("Close")) {
@@ -218,10 +234,10 @@ void ProgramEditor::ShowAboutWindow(bool* p_open) {
 	ImGui::Text("ViolettaLappyProgramEngine is licensed under the Apache2 License, see LICENSE for more information.");
 	ImGui::Separator();
 
-	ImGui::Text("Dear ImGui %s (%d)", IMGUI_VERSION, IMGUI_VERSION_NUM);	
+	ImGui::Text("Dear ImGui %s (%d)", IMGUI_VERSION, IMGUI_VERSION_NUM);
 	ImGui::Text("By Omar Cornut and all Dear ImGui contributors.");
 	ImGui::Text("Dear ImGui is licensed under the MIT License, see LICENSE for more information.");
-	ImGui::Text("If your company uses this, please consider sponsoring the project!");	
+	ImGui::Text("If your company uses this, please consider sponsoring the project!");
 
 	static bool show_config_info = false;
 	ImGui::Checkbox("Config/Build Information", &show_config_info);
@@ -367,6 +383,12 @@ void ProgramEditor::ShowAboutWindow(bool* p_open) {
 			ImGui::LogFinish();
 		}
 		ImGui::EndChildFrame();
+	}
+	ImGui::End();
+}
+
+void ProgramEditor::ShowContentDrawer(bool* p_open) {
+	if (ImGui::Begin("Browser", p_open)) {
 	}
 	ImGui::End();
 }
