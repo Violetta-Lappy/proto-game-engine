@@ -34,13 +34,9 @@ public:
 	void Update(float arg_dt, float arg_unscaledDt);
 	void Terminate();
 private:
-	static void ShowWorkspaceScene(bool* p_open);
-	static void ShowWorkspaceGame(bool* p_open);
-private:
+	static void ShowWorkspaceScene(bool* arg_status);
+	static void ShowWorkspaceGame(bool* arg_status);
 	static void ShowOverlay(bool* arg_status);
 	static void ShowAboutWindow(bool* arg_status);
 	static void ShowContentDrawer(bool* arg_status);
-public:
-	static void EnableContentDrawer(bool* arg_status);
-	static void DisableContentDrawer(bool* arg_status);
 };
