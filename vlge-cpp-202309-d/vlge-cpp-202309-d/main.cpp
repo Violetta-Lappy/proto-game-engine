@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
 	while (!WindowShouldClose()) {
 		program.Update(0.0f, 0.0f);
 
-		ClearBackground(BLACK);
+		ClearBackground(WHITE);
 
 		UpdateCamera(&camera, CAMERA_FREE);
 
