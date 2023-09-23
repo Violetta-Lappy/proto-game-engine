@@ -29,6 +29,7 @@ void Program::Start() {
 
 	m_processor.SetConfig(GetConfig());
 	m_editor.SetConfig(GetConfig());
+	m_render.SetConfig(GetConfig());
 	fmt::println("Violetta Lappy: Setup All Services with Global Config - DONE [O]");
 
 	m_editor.SetProcessor(m_processor);
@@ -43,16 +44,19 @@ void Program::Start() {
 	rlImGuiSetup(true);
 
 	//--ADD HERE--
+	m_processor.Start();
 	m_editor.Start();
+	m_render.Start();
 }
 
 void Program::Update(float arg_dt, float arg_unscaledDt) {
-	BeginDrawing();
-	ClearBackground(DARKGRAY);
+	BeginDrawing();	
 	rlImGuiBegin();
 
-	//Update all services here
+	//Update all services here	
+	m_processor.Update(arg_dt, arg_unscaledDt);
 	m_editor.Update(arg_dt, arg_unscaledDt);
+	m_render.Update(arg_dt, arg_unscaledDt);
 
 	rlImGuiEnd();
 	EndDrawing();
@@ -60,7 +64,9 @@ void Program::Update(float arg_dt, float arg_unscaledDt) {
 
 void Program::Terminate() {
 	//Terminate system by reverse order
+	m_render.Terminate();
 	m_editor.Terminate();
+	m_processor.Terminate();
 	
 	//--SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO--
 	rlImGuiShutdown();

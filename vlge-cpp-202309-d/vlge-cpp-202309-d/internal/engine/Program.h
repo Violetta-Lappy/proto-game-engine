@@ -35,7 +35,7 @@ private:
 	ProgramConfig m_config;
 	ProgramProcessor m_processor;
 	ProgramEditor m_editor;
-	//ProgramRender m_render;
+	ProgramRender m_render;
 	//ProgramAudio m_audio;
 	//ProgramNetwork m_network;	
 public:

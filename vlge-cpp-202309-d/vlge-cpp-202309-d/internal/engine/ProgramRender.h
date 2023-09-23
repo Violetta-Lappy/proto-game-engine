@@ -2,6 +2,7 @@
 
 //for Raylib only
 
+#include "raylib.h"
 #include "ProgramConfig.h"
 
 class ProgramRender {
