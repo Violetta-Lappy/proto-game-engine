@@ -30,7 +30,7 @@ limitations under the License.
 #include "ProgramNetwork.h"
 
 
-class Program {
+class ProgramRaylib {
 private:
 	ProgramConfig m_config;
 	ProgramProcessor m_processor;
@@ -39,15 +39,15 @@ private:
 	//ProgramAudio m_audio;
 	//ProgramNetwork m_network;	
 public:
-	Program();
-	~Program();
+	ProgramRaylib();
+	~ProgramRaylib();
 public:
 	ProgramConfig GetConfig() const {
 		return m_config;
 	}
 	void SetupConfig();
 public:	
-	void Start();
-	void Update(float arg_dt, float arg_unscaledDt);	
-	void Terminate();
+	void Init();
+	void Run(float arg_dt, float arg_unscaledDt);	
+	void Close();
 };

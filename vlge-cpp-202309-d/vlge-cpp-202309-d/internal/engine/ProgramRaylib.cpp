@@ -1,12 +1,12 @@
-#include "Program.h"
+#include "ProgramRaylib.h"
 
-Program::Program() {		
+ProgramRaylib::ProgramRaylib() {		
 }
 
-Program::~Program() {		
+ProgramRaylib::~ProgramRaylib() {		
 }
 
-void Program::SetupConfig() {
+void ProgramRaylib::SetupConfig() {
 	bool canIniLoadSuccess = false;
 	if (canIniLoadSuccess) {
 		//setup if detect file
@@ -21,7 +21,7 @@ void Program::SetupConfig() {
 	}	
 }
 
-void Program::Start() {
+void ProgramRaylib::Init() {
 	//--SETUP CONFIG & SUB SYSTEMS--
 	SetupConfig();
 	fmt::println(GetConfig().GetProgramName());
@@ -49,7 +49,7 @@ void Program::Start() {
 	m_render.Start();
 }
 
-void Program::Update(float arg_dt, float arg_unscaledDt) {
+void ProgramRaylib::Run(float arg_dt, float arg_unscaledDt) {
 	BeginDrawing();	
 	rlImGuiBegin();
 
@@ -62,7 +62,7 @@ void Program::Update(float arg_dt, float arg_unscaledDt) {
 	EndDrawing();
 }
 
-void Program::Terminate() {
+void ProgramRaylib::Close() {
 	//Terminate system by reverse order
 	m_render.Terminate();
 	m_editor.Terminate();
