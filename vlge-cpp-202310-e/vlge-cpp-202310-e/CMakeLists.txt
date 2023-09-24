@@ -2,6 +2,14 @@
 # project specific logic here.
 #
 
+if(NOT EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/miniaudio/miniaudio.h)
+
+file(DOWNLOAD
+https://raw.githubusercontent.com/mackron/miniaudio/0.11.18/miniaudio.h
+${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/miniaudio/miniaudio.h)
+
+endif()
+
 # Add source to this project's executable.
 add_executable (vlge-cpp-202310-e "vlge-cpp-202310-e.cpp" "vlge-cpp-202310-e.h")
 
