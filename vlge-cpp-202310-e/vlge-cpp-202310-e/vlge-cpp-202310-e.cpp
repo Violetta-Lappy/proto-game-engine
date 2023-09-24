@@ -6,6 +6,6 @@
 using namespace std;
 
 int main() {
-	cout << "Hello CMake." << endl;
+	cout << "Hello CMake. hoanglongplanner here." << endl;
 	return 0;
 }
