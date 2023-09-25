@@ -16,14 +16,14 @@ set(SOURCEFILE_COMMON
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.cpp" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.cpp" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.cpp" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.cpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rlimgui/*.cpp"
 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.h" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.h" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.h" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/*.h"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.h"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rlimgui/*.h"
 )
 
 file(GLOB_RECURSE SOURCEFILE_ALL CONFIGURE_DEPENDS
@@ -63,10 +63,9 @@ set(INTERNALPARTY
 set(3RDPARTY 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include" 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/sdl" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/miniaudio" 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui" 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rlimgui" 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/rmlui" 
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${INTERNALPARTY} PUBLIC ${3RDPARTY})

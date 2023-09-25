@@ -1,11 +1,9 @@
 #pragma once
 
-#include <raylib.h>
-#include <imgui.h>
-#include <imgui_internal.h>
-#include <rlImGui.h>
+#include <imgui/imgui.h>
+#include <imgui/imgui_internal.h>
 
-#include "fmt/format.h"
+#include <fmt/format.h>
 
 #include "ProgramProcessor.h"
 #include "ProgramConfig.h"

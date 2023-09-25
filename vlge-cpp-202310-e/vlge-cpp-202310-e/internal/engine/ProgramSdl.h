@@ -16,10 +16,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#include <raylib.h>
-#include <imgui.h>
-#include <rlImGui.h>
-
 #include "ProgramConfig.h"
 
 #include "ProgramProcessor.h"
@@ -30,7 +26,7 @@ limitations under the License.
 #include "ProgramNetwork.h"
 
 
-class ProgramRaylib {
+class ProgramSdl {
 private:
 	ProgramConfig m_config;
 	ProgramProcessor m_processor;
@@ -39,8 +35,8 @@ private:
 	//ProgramAudio m_audio;
 	//ProgramNetwork m_network;	
 public:
-	ProgramRaylib();
-	~ProgramRaylib();
+	ProgramSdl();
+	~ProgramSdl();
 public:
 	ProgramConfig GetConfig() const {
 		return m_config;
