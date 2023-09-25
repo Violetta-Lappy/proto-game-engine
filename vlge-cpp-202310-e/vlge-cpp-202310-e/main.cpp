@@ -16,14 +16,20 @@ limitations under the License.
 
 //https://gafferongames.com/post/fix_your_timestep/
 
-#include <iostream>
+#include <engine/Program.h>
+#include <fmt/format.h>
+
+std::string K_HelloWorld = "Hello CMake. hoanglongplanner here.";
 
 int main(int argc, char* argv[]) {
-	std::cout << "Hello CMake. hoanglongplanner here." << std::endl;
+	fmt::println("{0}", K_HelloWorld);
+
+	Program program;
+	program.Init();
 
 	double t = 0.0;
 	double dt = 1.0 / 60.0;
-	/*while (!quit) {		
+	/*while (!quit) {
 		t += dt;
 	}*/
 

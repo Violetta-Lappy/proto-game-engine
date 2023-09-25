@@ -46,7 +46,7 @@ public:
 	//--OPENGL RENDER CONFIG--
 	//--AUDIO CONFIG--
 public:
-	std::string GetProgramName() const {
+	std::string GetProgramName() {
 		return fmt::format("{0} - {1}", str_programSpec, str_programName);
 	}
 	int GetScreenWidth() const {

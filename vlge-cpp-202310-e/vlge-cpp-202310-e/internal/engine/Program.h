@@ -22,11 +22,7 @@ limitations under the License.
 #include "ProgramEditor.h"
 #include "ProgramRender.h"
 
-#include "ProgramAudio.h"
-#include "ProgramNetwork.h"
-
-
-class ProgramSdl {
+class Program {
 private:
 	ProgramConfig m_config;
 	ProgramProcessor m_processor;
@@ -35,8 +31,8 @@ private:
 	//ProgramAudio m_audio;
 	//ProgramNetwork m_network;	
 public:
-	ProgramSdl();
-	~ProgramSdl();
+	Program();
+	~Program();
 public:
 	ProgramConfig GetConfig() const {
 		return m_config;

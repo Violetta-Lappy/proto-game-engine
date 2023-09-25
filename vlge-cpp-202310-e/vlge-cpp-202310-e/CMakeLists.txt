@@ -62,7 +62,7 @@ set(INTERNALPARTY
 
 set(3RDPARTY 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include" 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/sdl" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/GFLW" 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/miniaudio" 
@@ -74,7 +74,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${INTERNALPARTY} PUBLIC ${3RDP
 #target_include_directories(game)
 
 set(3RDPARTY_LIB 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/sdl/x64/SDL2.lib"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/GLFW/glfw3.lib"
 #"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/freetype/freetype.lib"
 #"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/rmlui/RmlCore.lib"
 #"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/rmlui/RmlDebugger.lib"
