@@ -10,18 +10,33 @@ https://raw.githubusercontent.com/mackron/miniaudio/0.11.18/miniaudio.h
 ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/miniaudio/miniaudio.h)
 endif()
 
+add_library(fmt STATIC
+${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/format.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/core.h
+${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/format.h
+${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/format-inl.h
+${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/ostream.h
+)
+
+#add_library(violettalappy_ae SHARED)
+#add_library(violettalappy_ge SHARED)
+
 #--Define Your Custom Project Here--
 
 set(SOURCEFILE_COMMON 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.cpp" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.cpp" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.cpp" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/glad/*.c"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/GLFW/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.cpp"
 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.h" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.h" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.h" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/glad/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/GLFW/*.h"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/*.h"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.h"
 )
@@ -63,6 +78,8 @@ set(INTERNALPARTY
 set(3RDPARTY 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include" 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/GFLW" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/glad" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/KHR" 
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/miniaudio" 
@@ -73,7 +90,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${INTERNALPARTY} PUBLIC ${3RDP
 #target_include_directories(app)
 #target_include_directories(game)
 
-set(3RDPARTY_LIB 
+set(3RDPARTY_LIB
+fmt
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/GLFW/glfw3.lib"
 #"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/freetype/freetype.lib"
 #"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/rmlui/RmlCore.lib"
@@ -86,11 +104,6 @@ target_link_libraries(${PROJECT_NAME} ${3RDPARTY_LIB})
 #target_link_libraries(app)
 #target_link_libraries(game)
 #target_link_libraries(helpful)
-
-
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
-endif()
 
 # TODO: Add tests and install targets if needed.
 

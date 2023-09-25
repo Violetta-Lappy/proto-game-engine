@@ -1,3 +1,19 @@
+/*
+Copyright 2023 Violetta Lappy - hoanglongplanner
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 #include "Program.h"
 
 Program::Program() {		
@@ -23,39 +39,17 @@ void Program::SetupConfig() {
 
 void Program::Init() {
 	//--SETUP CONFIG & SUB SYSTEMS--
-	SetupConfig();		
-	//fmt::println(GetConfig().GetProgramName());
-	fmt::println("Violetta Lappy: Setup Global Config - DONE [O]");
+	SetupConfig();	
 
-	//m_processor.SetConfig(GetConfig());
-	//m_editor.SetConfig(GetConfig());
-	//m_render.SetConfig(GetConfig());
-	//fmt::println("Violetta Lappy: Setup All Services with Global Config - DONE [O]");
-
-	//m_editor.SetProcessor(m_processor);
-	//fmt::println("Violetta Lappy: Setup All Individual Services - DONE [O]");
-	//
-	////--SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO--			
-
-	////--ADD HERE--
-	//m_processor.Start();
-	//m_editor.Start();
-	//m_render.Start();
+	fmt::println(GetConfig().GetProgramName());
+	fmt::println("Violetta Lappy: Setup Global Config - DONE [O]");	
 }
 
 void Program::Run(float arg_dt, float arg_unscaledDt) {	
-	//Update all services here	
-	m_processor.Update(arg_dt, arg_unscaledDt);
-	m_editor.Update(arg_dt, arg_unscaledDt);
-	m_render.Update(arg_dt, arg_unscaledDt);	
+	
 }
 
-void Program::Close() {
-	//Terminate system by reverse order
-	m_render.Terminate();
-	m_editor.Terminate();
-	m_processor.Terminate();
-	
+void Program::Close() {		
 	//--SYSTEM DO NOT CHANGE UNLESS YOU KNOW WHAT TO DO--	
 
 	fmt::println("Violetta Lappy: ENGINE Shutdown Success [O]");

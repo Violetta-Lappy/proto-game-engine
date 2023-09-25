@@ -16,6 +16,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 #include "ProgramConfig.h"
 
 #include "ProgramProcessor.h"

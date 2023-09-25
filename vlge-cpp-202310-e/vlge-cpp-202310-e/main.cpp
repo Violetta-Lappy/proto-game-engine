@@ -15,23 +15,47 @@ limitations under the License.
 */
 
 //https://gafferongames.com/post/fix_your_timestep/
+//https://learnopengl.com/code_viewer_gh.php?code=src/1.getting_started/1.2.hello_window_clear/hello_window_clear.cpp
 
 #include <engine/Program.h>
 #include <fmt/format.h>
 
-std::string K_HelloWorld = "Hello CMake. hoanglongplanner here.";
+class KGraphicApi {
+public:
+    static const int K_OpenGL = 0;
+    static const int K_Vulkan = 1;
+    static const int K_WebGPU = 2;
+};
 
-int main(int argc, char* argv[]) {
-	fmt::println("{0}", K_HelloWorld);
+int main(int argc, char* argv[]) {   
+    
+    int tech = 2;
 
-	Program program;
-	program.Init();
+    switch (tech) {
+        case KGraphicApi::K_OpenGL:
+            {
+                fmt::println("OpenGL choose. Opening context !!");
+            }
+            break;
+        case KGraphicApi::K_Vulkan:
+            {
+                fmt::println("Vulkan choose. Opening context !!");
+            }
+            break;
+        case KGraphicApi::K_WebGPU:
+            {
+                fmt::println("WebGPU choose. Opening context !!");
+            }
+            break;
+        default:
+            {
+                fmt::println("None choose. Applicaton exit !!");
+            }
+            break;
+    }
 
-	double t = 0.0;
-	double dt = 1.0 / 60.0;
-	/*while (!quit) {
-		t += dt;
-	}*/
-
-	return 0;
+    return 0;
 }
+
+
+
