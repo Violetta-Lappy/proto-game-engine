@@ -14,10 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+//https://gafferongames.com/post/fix_your_timestep/
+
 #include <iostream>
 
 int main(int argc, char* argv[]) {
 	std::cout << "Hello CMake. hoanglongplanner here." << std::endl;
+
+	double t = 0.0;
+	double dt = 1.0 / 60.0;
+	/*while (!quit) {		
+		t += dt;
+	}*/
 
 	return 0;
 }
