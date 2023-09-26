@@ -30,12 +30,12 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 	static bool h_isShowGame = false;
 	static bool h_isShowContentDrawer = false;
 	static bool h_isShowAbout = false;
-
 	static bool h_isShowOverlay = true;
 
-	// show ImGui Content
+	//--imgui: workspace--
 	bool open = false;
 	ImGui::ShowDemoWindow(&open);
+
 	if (h_isShowOverlay) {
 		ShowOverlay(&h_isShowOverlay);
 	}	
@@ -50,8 +50,9 @@ void ProgramEditor::Update(float arg_dt, float arg_unscaledDt) {
 	}
 	if (h_isShowAbout) {
 		ShowAboutWindow(&h_isShowAbout);
-	}
+	}	
 
+	//--imgui: main--
 	if (ImGui::BeginMainMenuBar()) {
 		if (ImGui::BeginMenu("ViolettaLappy")) {
 			if (ImGui::MenuItem("Option")) {
@@ -190,7 +191,7 @@ void ProgramEditor::ShowWorkspaceScene(bool* arg_status) {
 
 	if (ImGui::BeginPopupContextWindow()) {
 		if (ImGui::MenuItem("Close")) {
-			*arg_status = !arg_status;
+			*arg_status = !&arg_status;
 		}
 		ImGui::EndPopup();
 	}
@@ -204,7 +205,7 @@ void ProgramEditor::ShowWorkspaceGame(bool* arg_status) {
 
 	if (ImGui::BeginPopupContextWindow()) {
 		if (ImGui::MenuItem("Close")) {
-			*arg_status = !arg_status;
+			*arg_status = !&arg_status;
 		}
 		ImGui::EndPopup();
 	}
@@ -239,7 +240,7 @@ void ProgramEditor::ShowOverlay(bool* arg_status) {
 	// Transparent background
 	ImGui::SetNextWindowBgAlpha(0.35f);
 	if (ImGui::Begin("Example: Simple overlay", arg_status, window_flags)) {
-		ImGui::Text("ViolettaLappyProgramEngine \n" "Release %s - %d - %s", VIOLETTALAPPY_RELEASE, VIOLETTALAPPY_YEARMONTH, VIOLETTALAPPY_VERSION);
+		ImGui::Text("ViolettaLappyProgramEngine \n" "Release %s - %d - %s\n" "%s", VIOLETTALAPPY_RELEASE, VIOLETTALAPPY_YEARMONTH, VIOLETTALAPPY_VERSION, VIOLETTALAPPY_GRAPHIC);
 		ImGui::Separator();
 		ImGui::Text("right-click to change position");
 		ImGui::Separator();
@@ -254,7 +255,9 @@ void ProgramEditor::ShowOverlay(bool* arg_status) {
 			if (ImGui::MenuItem("Top-right", NULL, location == 1)) location = 1;
 			if (ImGui::MenuItem("Bottom-left", NULL, location == 2)) location = 2;
 			if (ImGui::MenuItem("Bottom-right", NULL, location == 3)) location = 3;
-			if (arg_status && ImGui::MenuItem("Close")) *arg_status = false;
+			if (arg_status && ImGui::MenuItem("Close")) {
+				*arg_status = false;
+			}
 			ImGui::EndPopup();
 		}
 	}
@@ -274,7 +277,7 @@ void ProgramEditor::ShowAboutWindow(bool* arg_status) {
 		ImGui::EndPopup();
 	}
 
-	ImGui::Text("ViolettaLappyProgramEngine - Release %s - %d - %s", VIOLETTALAPPY_RELEASE, VIOLETTALAPPY_YEARMONTH, VIOLETTALAPPY_VERSION);
+	ImGui::Text("ViolettaLappyProgramEngine \n" "Release %s - %d - %s\n" "%s", VIOLETTALAPPY_RELEASE, VIOLETTALAPPY_YEARMONTH, VIOLETTALAPPY_VERSION, VIOLETTALAPPY_GRAPHIC);
 	ImGui::Text("By Violetta & Lappy - hoanglongplanner");
 	ImGui::Text("ViolettaLappyProgramEngine is licensed under the Apache2 License, see LICENSE for more information.");
 	ImGui::Separator();
@@ -437,7 +440,7 @@ void ProgramEditor::ShowContentDrawer(bool* arg_status) {
 	}
 	if (ImGui::BeginPopupContextWindow()) {
 		if (ImGui::MenuItem("Close")) {
-			*arg_status = !arg_status;
+			*arg_status = !&arg_status;
 		}
 		ImGui::EndPopup();
 	}

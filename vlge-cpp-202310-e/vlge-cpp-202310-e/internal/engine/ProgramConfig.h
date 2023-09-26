@@ -9,6 +9,7 @@
 #define VIOLETTALAPPY_RELEASE "D"
 #define VIOLETTALAPPY_YEARMONTH 202309
 #define VIOLETTALAPPY_VERSION "0.0.0"
+#define VIOLETTALAPPY_GRAPHIC "OpenGL 4.6 (GLFW + GLAD), Vulkan, WebGPU"
 
 class ProgramConfig {
 private:
@@ -18,6 +19,7 @@ private:
 	int i32_screenHeight = 720; //def: 600
 	int i32_targetFps = KFpsTarget::K_60; //def: 60
 	int i32_refreshRate = KRefeshRate::K_30; //def: 30
+	int i32_dpi = 1;
 public:
 	ProgramConfig() {
 	}
@@ -42,6 +44,9 @@ public:
 	void SetScreenHeight(int arg_value) {
 		i32_screenHeight = arg_value;
 	}		
+	void SetDpi(int arg_value) {
+		i32_dpi = arg_value;
+	}
 	//--GRAPHIC CONFIG--
 	//--OPENGL RENDER CONFIG--
 	//--AUDIO CONFIG--
@@ -54,6 +59,9 @@ public:
 	}
 	int GetScreenHeight() const {
 		return i32_screenHeight;
+	}
+	int GetDpi() const {
+		return i32_dpi;
 	}
 	int GetTargetFps() const {
 		return i32_targetFps;
