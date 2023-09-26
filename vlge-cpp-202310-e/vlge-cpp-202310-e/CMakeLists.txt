@@ -10,13 +10,19 @@ https://raw.githubusercontent.com/mackron/miniaudio/0.11.18/miniaudio.h
 ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/miniaudio/miniaudio.h)
 endif()
 
-add_library(fmt STATIC
-${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/format.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/core.h
-${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/format.h
-${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/format-inl.h
-${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/ostream.h
-)
+#add_library(fmt STATIC
+#${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/format.cpp
+#${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/core.h
+#${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/format.h
+#${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/format-inl.h
+#${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/ostream.h
+#)
+
+#add_library(glad STATIC
+#${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/glad/glad.c
+#${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/glad/glad.h
+#${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/KHR/khrplatform.h
+#)
 
 #add_library(violettalappy_ae SHARED)
 #add_library(violettalappy_ge SHARED)
@@ -91,14 +97,10 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${INTERNALPARTY} PUBLIC ${3RDP
 #target_include_directories(game)
 
 set(3RDPARTY_LIB
-fmt
+opengl32.lib
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/GLFW/glfw3.lib"
-#"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/freetype/freetype.lib"
-#"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/rmlui/RmlCore.lib"
-#"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/lib/rmlui/RmlDebugger.lib"
 )
 
-#set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} ${3RDPARTY_LIB})
 #target_link_libraries(launcher)
 #target_link_libraries(app)
