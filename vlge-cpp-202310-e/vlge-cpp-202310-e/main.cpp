@@ -44,9 +44,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
 
 	//while resize, render screen to not look sloppy
-	//NOTE: NOT IMPLEMENTED FOR PERFORMANCE REASON
-	//- INCREASE PROCESS MEMORY 200+mb
-	//- FIX BLACK LINE, but not implemented as reason stated
+	//NOTE: FIX BLACK LINE, BUT NOT IMPLEMENTED FOR PERFORMANCE REASON
+	//- INCREASE PROCESS MEMORY 200+mb	
 	//draw(window);
 }
 
