@@ -38,6 +38,12 @@ set(SOURCEFILE_COMMON
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/*.cpp"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.cpp"
 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/litehtml/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/litehtml/*.cpp"
+
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/gumbo/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/gumbo/*.c"
+
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.h" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.h" 
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.h" 
@@ -89,6 +95,8 @@ set(3RDPARTY
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/miniaudio" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/litehtml" 
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/gumbo" 
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${INTERNALPARTY} PUBLIC ${3RDPARTY})
