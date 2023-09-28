@@ -125,7 +125,7 @@ int main(int, char**) {
 	//If no fonts are loaded, dear imgui will use the default font. 
 	//You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.	
 	io.Fonts->AddFontDefault();	
-	ImFont* font = io.Fonts->AddFontFromFileTTF("font/IBMPlexSans-Regular.ttf", 16.0f, nullptr, io.Fonts->GetGlyphRangesJapanese());
+	ImFont* font = io.Fonts->AddFontFromFileTTF("data/font/IBMPlexSans-Regular.ttf", 16.0f, nullptr, io.Fonts->GetGlyphRangesJapanese());
 	IM_ASSERT(font != nullptr);
 
 	//imgui: window setup
