@@ -30,27 +30,26 @@ endif()
 #--Define Your Custom Project Here--
 
 set(SOURCEFILE_COMMON 
-"${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.cpp" 
-"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.cpp" 
-"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.cpp" 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/glad/*.c"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/GLFW/*.cpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/*.cpp"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.cpp"
-
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/litehtml/*.h"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/litehtml/*.cpp"
-
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/gumbo/*.h"
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/gumbo/*.c"
-
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.h" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/engine/*.cpp" 
+
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.h" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ae/*.cpp" 
+
 "${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.h" 
+"${CMAKE_CURRENT_SOURCE_DIR}/internal/include/ge/*.cpp" 
+
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/glad/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/glad/*.c"
+
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/GLFW/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/GLFW/*.cpp"
+
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt/*.cpp"
+
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.h"
+"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui/*.cpp"
 )
 
 file(GLOB_RECURSE SOURCEFILE_ALL CONFIGURE_DEPENDS
@@ -95,8 +94,6 @@ set(3RDPARTY
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/imgui"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/fmt"
 "${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/miniaudio" 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/litehtml" 
-"${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/include/gumbo" 
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${INTERNALPARTY} PUBLIC ${3RDPARTY})
@@ -129,3 +126,8 @@ if (APPLE)
     target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
     target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
 endif()
+
+add_custom_target(copy_assets
+    COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_LIST_DIR}/font ${CMAKE_CURRENT_BINARY_DIR}/font
+)
+add_dependencies(${PROJECT_NAME} copy_assets)
