@@ -17,6 +17,10 @@
 
 #include <GLFW/glfw3.h> 
 
+#include <RmlUi/Backends/RmlUi_Platform_GLFW.h>
+#include <RmlUi/Core.h>
+#include <RmlUi/Debugger.h>
+
 #include <engine/ProgramConfig.h>
 #include <engine/ProgramEditor.h>
 #include <ae/KExitCode.h>
